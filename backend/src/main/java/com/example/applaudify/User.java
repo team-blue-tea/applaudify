@@ -5,11 +5,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "applaudify-collection")
+@Document(collection = "users")
 public class User {
     @Id
     private String id;
     private String email;
+    private String firstName;
+    private String lastName;
+
+    //private List<Appreciation> appreciationList;
 
     public User() {
     }
@@ -18,12 +22,12 @@ public class User {
         this.email = email;
     }
 
-    public User(String email, String firstName, String lastName, List<Appreciation> appreciationList) {
-        this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.appreciationList = appreciationList;
-    }
+//    public User(String email, String firstName, String lastName, List<Appreciation> appreciationList) {
+//        this.email = email;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.appreciationList = appreciationList;
+//    }
 
     public User(String email, String firstName, String lastName) {
         this.email = email;
@@ -31,9 +35,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    private String firstName;
-    private String lastName;
-    private List<Appreciation> appreciationList;
 
     public String getId() {
         return id;
@@ -63,11 +64,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public List<Appreciation> getAppreciationList() {
-        return appreciationList;
-    }
-
-    public void setAppreciationList(List<Appreciation> appreciationList) {
-        this.appreciationList = appreciationList;
-    }
+//    public List<Appreciation> getAppreciationList() {
+//        return appreciationList;
+//    }
+//
+//    public void setAppreciationList(List<Appreciation> appreciationList) {
+//        this.appreciationList = appreciationList;
+//    }
 }
