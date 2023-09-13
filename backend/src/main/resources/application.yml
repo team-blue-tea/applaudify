@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGO_CONNECTION_STRING}
+      database: applaudify
