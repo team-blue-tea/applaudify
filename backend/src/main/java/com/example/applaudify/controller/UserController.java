@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin("*")
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(ApplaudifyApplication.class);

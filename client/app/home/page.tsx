@@ -4,22 +4,12 @@ import Navbar from "@/componenets/Navbar"
 import Link from "next/link"
 import { useEffect } from "react";
 
-async function Home() {
+function Home() {
 
   const getAppreciation = async () => {
     const response = await fetch('http://localhost:8081/appreciations');
     const jsonData = await response.json();
     console.log(jsonData);
-    // try {
-    //   const response = await fetch('http://localhost:8081/appreciations');
-    //   if (!response.ok) {
-    //     throw new Error(`HTTP Error! Status: ${response.status}`);
-    //   }
-    //   const jsonData = await response.json();
-    //   console.log(jsonData);
-    // } catch (error) {
-    //   console.error('Error:', error);
-    // }
   }
 
   useEffect(() => {
