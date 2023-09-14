@@ -4,7 +4,7 @@ import Navbar from "@/components/Navbar"
 import Link from "next/link"
 import { useEffect, useState } from "react";
 import { Appreciation } from "../types";
-import { AppretiationCard } from "@/components/AppretiationCard";
+import { AppreciationCard } from "@/components/AppreciationCard";
 
 function Home() {
 
@@ -23,17 +23,16 @@ function Home() {
 
   return (
     <>
-    <div>
-        <h1>WELCOME TO APPLAUDIFY!!!!!</h1>
+      <div>
+        <h1>Main Feed:</h1>
         <ul>
-          {data.map((element: Appreciation, index)=>(
+          {data.map((element: Appreciation, index) => (
             <li key={index}>
-              <AppretiationCard senderName={element.senderName} receiverName={element.receiverName} comment={element.comment} />
+              <AppreciationCard senderName={element.senderName} receiverName={element.receiverName} comment={element.comment} />
             </li>
           ))}
         </ul>
-    </div>
-  
+      </div>
     </>
   )
 }
