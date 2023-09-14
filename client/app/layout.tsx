@@ -2,6 +2,7 @@ import Navbar from '@/componenets/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,7 +21,24 @@ export default function RootLayout({
       <body className={inter.className}>
       <header>
         <Navbar></Navbar>
-    </header> 
+      </header> 
+
+       {/* <--- Left Side bar--> */}
+       <div className="side-bar">
+        <Link href={'/home'}>Feed</Link>
+        <Link href={'/appreciate'}>Appreciate</Link>
+        <Link href={'/badges'}>Badges</Link>
+        <Link href={'/profile'}>Profile</Link>
+        </div>
+
+       {/* <--- Right Side bar--> */}
+       <div className='side-bar'>
+        <Link href={'/home'}>Salt</Link>
+        <Link href={'/editprofile'}><img src=""
+        ></img>Settings</Link>
+         <Link href={'/help'}><img src=""
+        ></img>Help</Link>
+       </div>
         {children}
       </body>
     </html>
