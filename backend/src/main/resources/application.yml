@@ -3,3 +3,5 @@ spring:
     mongodb:
       uri: ${MONGO_CONNECTION_STRING}
       database: applaudify
+server:
+  port: 8081
