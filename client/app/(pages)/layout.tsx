@@ -3,11 +3,13 @@
 import AppHeader from "@/components/AppHeader";
 import "../globals.css";
 import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
   UserOutlined,
-  VideoCameraOutlined,
+  QuestionCircleOutlined,
+  SettingOutlined,
+  TrophyOutlined,
+  SafetyCertificateOutlined,
+  BookOutlined,
+  CopyrightOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { useState } from "react";
@@ -38,17 +40,17 @@ export default function PagesLayout({
               items={[
                 {
                   key: "1",
-                  icon: <UserOutlined />,
+                  icon: <BookOutlined />,
                   label: "Feed",
                 },
                 {
                   key: "2",
-                  icon: <VideoCameraOutlined />,
+                  icon: <SafetyCertificateOutlined />,
                   label: "Appreciate",
                 },
                 {
                   key: "3",
-                  icon: <UploadOutlined />,
+                  icon: <TrophyOutlined />,
                   label: "Badge",
                 },
                 {
@@ -95,17 +97,17 @@ export default function PagesLayout({
               items={[
                 {
                   key: "1",
-                  icon: <UserOutlined />,
+                  icon: <CopyrightOutlined />,
                   label: "SALT",
                 },
                 {
                   key: "2",
-                  icon: <VideoCameraOutlined />,
+                  icon: <SettingOutlined />,
                   label: "Settings",
                 },
                 {
                   key: "3",
-                  icon: <VideoCameraOutlined />,
+                  icon: <QuestionCircleOutlined  />,
                   label: "Help",
                 },
               ]}

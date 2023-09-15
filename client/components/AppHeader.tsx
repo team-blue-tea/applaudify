@@ -21,10 +21,11 @@ const App: React.FC = () => {
         }}
       >
         <Link href={""} className="demo-logo">
-          Logo
+          <img src="logo-img.png" className="logo-img"></img>
+          
         </Link>
         <div className="search-field">
-          <input type="text" />
+          <input type="text" className="search-input"/>
         </div>
         <Link href={""} className="profile-icon">
           Profile
