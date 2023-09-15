@@ -23,8 +23,24 @@ function Home() {
     console.log(jsonData);
   };
 
+  const addUserToDb = async () => {
+    // retrieve user data from DB here
+    // https://next-auth.js.org/configuration/providers/credentials
+    const res = await fetch("https://applaudify.fly.dev/users/add", {
+      method: "POST",
+      body: JSON.stringify({
+        email: session?.user?.email,
+        firstName: session?.user?.name,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    console.log(data);
+  };
+
   useEffect(() => {
     getAppreciation();
+    addUserToDb();
   }, []);
 
   const userAvatar = session?.user?.image ? (
