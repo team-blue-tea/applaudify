@@ -36,10 +36,19 @@ body {
 }
 
 .demo-logo {
-  color: white;
+  color: #FF4B11;
 }
 
 .layout-container {
   margin-top: 4em;
 }
 
+.ant-menu-item-selected {
+  background-color: #FF4B11;
+}
+.search-input {
+  padding: 7px;
+}
+.logo-img{
+  height:35px
+}
