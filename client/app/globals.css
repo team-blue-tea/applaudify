@@ -6,6 +6,11 @@ html {
 
 body {
   height: 100%;
+  margin: 0;
+}
+
+main {
+  margin: 0;
 }
 
 .avatar{
@@ -37,6 +42,11 @@ body {
 
 .demo-logo {
   color: #FF4B11;
+  margin-top: 20px;
+}
+
+.profile-icon {
+  margin-top: 24px;
 }
 
 .layout-container {
@@ -46,9 +56,33 @@ body {
 .ant-menu-item-selected {
   background-color: #FF4B11;
 }
-.search-input {
-  padding: 7px;
-}
+
 .logo-img{
   height:35px
+}
+
+.appreciation-card {
+  width: 400px;
+  border: rgba(8, 165, 244, 0.833) 0.5px solid;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 50px -20px rgba(8, 165, 244, 0.381);
+  background-color: #d8f9ff;
+}
+
+.feed-appreciation-list {
+  list-style: none;
+  padding: 0;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-avatar {
+  border: #ddd 0.5px solid;
+  border-radius: 50%;
+  scale: 1.2;
 }

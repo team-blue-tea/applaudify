@@ -13,6 +13,7 @@ import {
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
 const { Header, Sider, Content } = Layout;
 
@@ -25,13 +26,19 @@ export default function PagesLayout({
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const { data: session } = useSession();
 
   return (
     <>
-      <AppHeader />
+      <AppHeader url={session?.user?.image as string} />
       <div className="layout-container">
         <Layout>
-          <Sider trigger={null} collapsible collapsed={collapsed}>
+          <Sider
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
+            style={{ position: "fixed", height: "100%" }}
+          >
             <div className="demo-logo-vertical" />
             <Menu
               theme="dark"
@@ -62,8 +69,8 @@ export default function PagesLayout({
             />
           </Sider>
           <Layout>
-            <Header style={{ padding: 0, background: colorBgContainer }}>
-              {/*             <Button
+            {/* <Header style={{ padding: 0, background: colorBgContainer }}>
+              <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
               onClick={() => setCollapsed(!collapsed)}
@@ -73,11 +80,11 @@ export default function PagesLayout({
                 height: 64,
                 marginTop: "4rem",
               }}
-            /> */}
-            </Header>
+            />
+            </Header> */}
             <Content
               style={{
-                margin: "1rem 16px 24px",
+                margin: 0,
                 padding: 24,
                 minHeight: 280,
                 background: colorBgContainer,
@@ -88,7 +95,12 @@ export default function PagesLayout({
               {children}
             </Content>
           </Layout>
-          <Sider trigger={null} collapsible collapsed={collapsed}>
+          <Sider
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
+            style={{ position: "fixed", height: "100%", right: 0 }}
+          >
             <div className="demo-logo-vertical" />
             <Menu
               theme="dark"
@@ -107,7 +119,7 @@ export default function PagesLayout({
                 },
                 {
                   key: "3",
-                  icon: <QuestionCircleOutlined  />,
+                  icon: <QuestionCircleOutlined />,
                   label: "Help",
                 },
               ]}
