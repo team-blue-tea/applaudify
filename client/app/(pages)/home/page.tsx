@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 function Home() {
-  const { data: session } = useSession({
+  const { data: session, status } = useSession({
     required: true,
     onUnauthenticated() {
       redirect("api/auth/signin?callbackUrl=/home");
@@ -32,8 +32,12 @@ function Home() {
 
   const addUserToDb = async () => {
     console.log(JSON.stringify(user));
+    if (!user.email) {
+      return;
+    }
     try {
-      const res = await fetch("https://applaudify.fly.dev" + "/users/add", {
+      // FIX URL HERE
+      const res = await fetch("http://localhost:8081" + "/users/add", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -54,24 +58,28 @@ function Home() {
   useEffect(() => {
     getAppreciation();
     addUserToDb();
-  }, []);
+  }, [status]);
 
   return (
     <>
-      <div className="main-content">
-        <h1>Welcome {session?.user?.name}!</h1>
-        <ul className="feed-appreciation-list">
-          {data.map((element: Appreciation, index) => (
-            <li key={index}>
-              <AppreciationCard
-                senderName={element.senderName}
-                receiverName={element.receiverName}
-                comment={element.comment}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
+      {status === "loading" ? (
+        <div className="loading-indicator">Loading...</div>
+      ) : (
+        <div className="main-content">
+          <h1>Welcome {session?.user?.name}!</h1>
+          <ul className="feed-appreciation-list">
+            {data.map((element: Appreciation, index) => (
+              <li key={index}>
+                <AppreciationCard
+                  senderName={element.senderName}
+                  receiverName={element.receiverName}
+                  comment={element.comment}
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </>
   );
 }
