@@ -12,3 +12,7 @@ export type User = {
 export type ImageUrl = {
   url: string
 }
+
+export type UserList = {
+  list: User[],
+}

@@ -27,11 +27,9 @@ function Home() {
     const response = await fetch(backendUrl + "/appreciations");
     const jsonData = await response.json();
     setData(jsonData);
-    console.log(jsonData);
   };
 
   const addUserToDb = async () => {
-    console.log(user);
     if (!user.email) {
       return;
     }
@@ -43,9 +41,7 @@ function Home() {
           "Content-Type": "application/json",
         },
       });
-
       const data = await res.json();
-      console.log(data);
       if (!res.ok) {
         throw new Error(`Failed to add user. Status code: ${res.status}`);
       }

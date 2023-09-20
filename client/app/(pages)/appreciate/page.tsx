@@ -1,24 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import Form from "@/components/Form";
+import { useEffect, useState } from "react";
 
-function page() {
+function Appreciate() {
   const [users, setUsers] = useState([]);
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
-  const getAppreciation = async () => {
+  const getUsers = async () => {
     const response = await fetch(backendUrl + "/users");
     const jsonData = await response.json();
     setUsers(jsonData);
     console.log(jsonData);
   };
 
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
-    <div>
-      <h1>Appreciate</h1>
-    </div>
+    <>
+      {users.length === 0 ? (
+        <div>Loading</div>
+      ) : (
+        <div className="appreciate-container">
+          <Form list={users}></Form>
+        </div>
+      )}
+    </>
   );
 }
 
-export default page;
+export default Appreciate;
