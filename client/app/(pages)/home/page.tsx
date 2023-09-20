@@ -56,8 +56,10 @@ function Home() {
   };
 
   useEffect(() => {
-    getAppreciation();
-    addUserToDb();
+    if (status === "authenticated") {
+      getAppreciation();
+      addUserToDb();
+    }
   }, [status]);
 
   return (
