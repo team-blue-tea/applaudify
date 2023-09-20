@@ -14,30 +14,29 @@ function Home() {
     },
   });
 
+  const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
+
   const user: User = {
     email: session?.user?.email!,
-    firstName: session?.user?.name!,
+    name: session?.user?.name!,
   };
 
   const [data, setData] = useState([]);
 
   const getAppreciation = async () => {
-    const response = await fetch(
-      "https://applaudify.fly.dev" + "/appreciations"
-    );
+    const response = await fetch(backendUrl + "/appreciations");
     const jsonData = await response.json();
     setData(jsonData);
     console.log(jsonData);
   };
 
   const addUserToDb = async () => {
-    console.log(JSON.stringify(user));
+    console.log(user);
     if (!user.email) {
       return;
     }
     try {
-      // FIX URL HERE
-      const res = await fetch("http://localhost:8081" + "/users/add", {
+      const res = await fetch(backendUrl + "/users/add", {
         method: "POST",
         body: JSON.stringify(user),
         headers: {
@@ -68,7 +67,7 @@ function Home() {
         <div className="loading-indicator">Loading...</div>
       ) : (
         <div className="main-content">
-          <h1>Welcome {session?.user?.name}!</h1>
+          <h1>Welcome {user.name}!</h1>
           <ul className="feed-appreciation-list">
             {data.map((element: Appreciation, index) => (
               <li key={index}>

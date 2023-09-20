@@ -3,15 +3,12 @@ package com.example.applaudify.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 @Document(collection = "users")
 public class User {
     @Id
     private String id;
     private String email;
-    private String firstName;
-    private String lastName;
+    private String name;
 
     public User() {
     }
@@ -20,10 +17,9 @@ public class User {
         this.email = email;
     }
 
-    public User(String email, String firstName, String lastName) {
+    public User(String email, String name) {
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
     }
 
     public String getId() {
@@ -38,20 +34,12 @@ public class User {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
 }

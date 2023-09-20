@@ -14,6 +14,7 @@ import {
 import { Layout, Menu, Button, theme } from "antd";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 const { Header, Sider, Content } = Layout;
 
@@ -47,12 +48,20 @@ export default function PagesLayout({
               items={[
                 {
                   key: "1",
-                  icon: <BookOutlined />,
+                  icon: (
+                    <Link href="/home">
+                      <BookOutlined />
+                    </Link>
+                  ),
                   label: "Feed",
                 },
                 {
                   key: "2",
-                  icon: <SafetyCertificateOutlined />,
+                  icon: (
+                    <Link href="/appreciate">
+                      <SafetyCertificateOutlined />
+                    </Link>
+                  ),
                   label: "Appreciate",
                 },
                 {

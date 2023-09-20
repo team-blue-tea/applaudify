@@ -6,8 +6,7 @@ export type Appreciation = {
 
 export type User = {
   email?: string,
-  firstName?: string,
-  lastName?: string,
+  name?: string,
 }
 
 export type ImageUrl = {
