@@ -2,11 +2,12 @@
 
 Welcome to **Applaudify** – the ultimate application for organizations and employees who are eager to celebrate and acknowledge their soft skills and contributions. 🎉
 
-![Applaudify Logo](insert_link_to_logo_here)
 
 ## Table of Contents
+
 - [Introduction](#introduction)
 - [Features](#features)
+<img align="right" src="https://i.imgur.com/S0ASTQ3.png" width="200px" ></img>
 - [Getting Started](#getting-started)
 - [User Guide](#user-guide)
 - [License](#license)
