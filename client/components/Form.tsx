@@ -33,7 +33,7 @@ const Form = (props: UserList) => {
   }, []);
 
   return (
-    <div>
+    <div className="form-container">
       <form
         onSubmit={generateAppreciation}
         className="generate-appreciation__form"
@@ -59,13 +59,14 @@ const Form = (props: UserList) => {
         </label>
         <label>
           <h5>What do you appreciate about this person:</h5>
-          <input
-            type="text"
+          <textarea
             value={comment}
             placeholder="Write your appreciation here"
             onChange={(e) => setComment(e.currentTarget.value)}
+            className="input-text"
           />
         </label>
+        <input type="submit" value="Send 👏" className="form-submit" />
       </form>
     </div>
   );

@@ -50,6 +50,10 @@ main {
 }
 
 .layout-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
   margin-top: 4em;
 }
 
@@ -58,7 +62,8 @@ main {
 }
 
 .logo-img{
-  height:35px
+  height:50px;
+  border-radius: 50%;
 }
 
 .appreciation-card {
@@ -66,7 +71,8 @@ main {
   border: rgba(8, 165, 244, 0.833) 0.5px solid;
   margin-bottom: 10px;
   box-shadow: 0px 0px 50px -20px rgba(8, 165, 244, 0.381);
-  background-color: #d8f9ff;
+  background-color: #6264966a;
+  color: wheat;
 }
 
 .feed-appreciation-list {
@@ -79,6 +85,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgb(60, 59, 59);
 }
 
 .user-avatar {
@@ -87,6 +94,24 @@ main {
   scale: 1.2;
 }
 
-.appreciate-container {
-  margin-left: 200px;
+.whitespace {
+  width: 20vw;
 }
+
+.input-text {
+  width: 400px;
+  height: 100px;
+  resize: none;
+}
+
+.generate-appreciation__form  {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-submit {
+  width: min-content;
+}
+
+

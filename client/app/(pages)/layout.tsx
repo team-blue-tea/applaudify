@@ -33,12 +33,18 @@ export default function PagesLayout({
     <>
       <AppHeader url={session?.user?.image as string} />
       <div className="layout-container">
-        <Layout>
+        <div className="whitespace"></div>
+        <Layout
+          style={{
+            margin: 0,
+          }}
+        >
           <Sider
             trigger={null}
             collapsible
             collapsed={collapsed}
-            style={{ position: "fixed", height: "100%" }}
+            className="left-sider"
+            style={{ height: "100vh" }}
           >
             <div className="demo-logo-vertical" />
             <Menu
@@ -64,11 +70,11 @@ export default function PagesLayout({
                   ),
                   label: "Appreciate",
                 },
-                {
+                /*                 {
                   key: "3",
                   icon: <TrophyOutlined />,
                   label: "Badge",
-                },
+                }, */
                 {
                   key: "4",
                   icon: <UserOutlined />,
@@ -77,7 +83,11 @@ export default function PagesLayout({
               ]}
             />
           </Sider>
-          <Layout>
+          <Layout
+            style={{
+              margin: 0,
+            }}
+          >
             {/* <Header style={{ padding: 0, background: colorBgContainer }}>
               <Button
               type="text"
@@ -94,11 +104,12 @@ export default function PagesLayout({
             <Content
               style={{
                 margin: 0,
-                padding: 24,
-                minHeight: 280,
+                padding: 0,
+                paddingBottom: 70,
                 background: colorBgContainer,
                 height: "100vh",
                 overflow: "scroll",
+                minWidth: 500,
               }}
             >
               {children}
@@ -108,33 +119,39 @@ export default function PagesLayout({
             trigger={null}
             collapsible
             collapsed={collapsed}
-            style={{ position: "fixed", height: "100%", right: 0 }}
+            className="right-sider"
+            style={{ height: "100vh" }}
           >
             <div className="demo-logo-vertical" />
             <Menu
               theme="dark"
               mode="inline"
-              defaultSelectedKeys={["1"]}
+              defaultSelectedKeys={["0"]}
               items={[
                 {
                   key: "1",
                   icon: <CopyrightOutlined />,
                   label: "SALT",
                 },
-                {
+                /*                 {
                   key: "2",
                   icon: <SettingOutlined />,
                   label: "Settings",
-                },
+                }, */
                 {
                   key: "3",
-                  icon: <QuestionCircleOutlined />,
-                  label: "Help",
+                  icon: (
+                    <Link href="/contact">
+                      <QuestionCircleOutlined />
+                    </Link>
+                  ),
+                  label: "About Us",
                 },
               ]}
             />
           </Sider>
         </Layout>
+        <div className="whitespace"></div>
       </div>
     </>
   );
