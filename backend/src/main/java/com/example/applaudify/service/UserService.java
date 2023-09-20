@@ -1,6 +1,6 @@
 package com.example.applaudify.service;
 
-import com.example.applaudify.User;
+import com.example.applaudify.model.User;
 import com.example.applaudify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,7 @@
 package com.example.applaudify.controller;
 
 import com.example.applaudify.ApplaudifyApplication;
-import com.example.applaudify.User;
-import com.example.applaudify.repository.UserRepository;
+import com.example.applaudify.model.User;
 import com.example.applaudify.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

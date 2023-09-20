@@ -1,6 +1,6 @@
 package com.example.applaudify.repository;
 
-import com.example.applaudify.User;
+import com.example.applaudify.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
