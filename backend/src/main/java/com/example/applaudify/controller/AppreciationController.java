@@ -1,6 +1,6 @@
 package com.example.applaudify.controller;
 
-import com.example.applaudify.Appreciation;
+import com.example.applaudify.model.Appreciation;
 import com.example.applaudify.service.AppreciationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

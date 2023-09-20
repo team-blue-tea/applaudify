@@ -1,8 +1,7 @@
 package com.example.applaudify.controller;
 
 import com.example.applaudify.ApplaudifyApplication;
-import com.example.applaudify.User;
-import com.example.applaudify.repository.UserRepository;
+import com.example.applaudify.model.User;
 import com.example.applaudify.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,13 +34,10 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody User user) {
         logger.info("Received a request to create a user: {}", user);
-
-        User savedUser = userService.addUser(user);
-        if (savedUser != null) {
-            logger.info("User created successfully: {}", savedUser);
-        } else {
-            logger.error("Failed to create user: {}", user);
+        User findUser = userService.findUserByEmail(user.getEmail());
+        if (findUser == null) {
+            return ResponseEntity.ok(userService.addUser(user));
         }
-        return ResponseEntity.ok(savedUser);
+        return ResponseEntity.ok(findUser);
     }
 }

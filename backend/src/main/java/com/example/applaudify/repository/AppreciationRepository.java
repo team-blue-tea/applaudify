@@ -1,6 +1,6 @@
 package com.example.applaudify.repository;
 
-import com.example.applaudify.Appreciation;
+import com.example.applaudify.model.Appreciation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 
