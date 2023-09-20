@@ -6,10 +6,13 @@ export type Appreciation = {
 
 export type User = {
   email?: string,
-  firstName?: string,
-  lastName?: string,
+  name?: string,
 }
 
 export type ImageUrl = {
   url: string
+}
+
+export type UserList = {
+  list: User[],
 }
