@@ -75,13 +75,20 @@ const Form = (props: UserList) => {
             />
           </label>
         </div>
-        <input type="submit" value="Send 👏" className="form-submit" />
+        <div className="gif-container">
+          <div className="gif-list">
+            <Collapsible className="collapsible-button" openedClassName="collapsible-button" trigger={"Add GIF"}>
+              <div className="gif-picker-container">
+                <GifPicker width={200} height={300} tenorApiKey={process.env.NEXT_PUBLIC_TENOR_API as string} onGifClick={(gif) => {
+                  setSelectedGif(gif.url);
+                  event?.preventDefault();
+                }} />
+              </div>
+            </Collapsible>
+          </div>
+          <input type="submit" value="Send 👏" className="form-submit" />
+        </div>
       </form>
-      <Collapsible trigger={"Add GIF"}>
-        <GifPicker tenorApiKey={process.env.NEXT_PUBLIC_TENOR_API as string} onGifClick={(gif) => {
-          setSelectedGif(gif.url)
-        }} />
-      </Collapsible>
     </div>
   );
 };
