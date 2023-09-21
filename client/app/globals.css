@@ -8,7 +8,7 @@
   --darkOrange: #ff8531;
   --lightOrange: #ffa600;
   --yellow: #ffd380;
-  --card-background: #ffffff80;
+  --card-background: #ffffff91;
   --main-font: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -268,4 +268,18 @@ main {
 
 .gif-picker-container {
   margin-top: 20px;
+}
+
+.gif-image {
+  max-height: 200px;
+  padding: 20px;
+}
+
+.text-and-gif {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.with-gif {
+  height: 257px;
 }
