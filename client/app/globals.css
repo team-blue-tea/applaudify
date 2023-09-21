@@ -19,6 +19,7 @@
 
 
 html {
+  background-color: var(--lightBlue);
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -53,6 +54,10 @@ main {
   margin-bottom: 10px;
 }
 
+.feed-appreciation-list {
+  background-color: var(--lightBlue);
+}
+
 .card-team:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
@@ -84,6 +89,11 @@ main {
   height:50px;
   border-radius: 50%;
   border: 2px solid var(--darkOrange);
+}
+
+.appreciate-container {
+  background-color: var(--lightBlue);
+  height: 100%;
 }
 
 .appreciation-card {
@@ -125,20 +135,91 @@ main {
   background-color: var(--lightBlue);
 }
 
-.input-text {
-  width: 400px;
-  height: 100px;
-  resize: none;
-}
-
 .generate-appreciation__form  {
   padding: 50px;
   display: flex;
   flex-direction: column;
 }
 
+.form-container {
+  font-size: 1.6em;
+}
+
+.form-comment__label {
+  align-self: center;
+}
+
+.form-comment {
+  background-color: var(--blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 20px 28px 20px;
+  margin-top: 24px;
+  border-radius: 4px;
+}
+
+.form-comment__title {
+  margin: 0 0 20px 0;
+  font-size: 0.9rem;
+  color: wheat;
+}
+
+.form-comment__textarea {
+  width: 400px;
+  height: 100px;
+  resize: none;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 0.7em;
+}
+
+.form-comment__textarea:focus {
+  border: none;
+  outline: var(--lightOrange) 2px solid;
+}
+
 .form-submit {
   width: min-content;
+  align-self: flex-end;
+  margin: 20px 0 0 0;
+  padding: 4px 8px;
+  font-size: 0.8em;
+  background-color: var(--darkBlue);
+  color: var(--yellow);
+  border: none;
+  outline: 2px solid var(--yellow);
+  border-radius: 4px;
+}
+
+.form-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--blue);
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.form-select__title {
+  white-space: nowrap;
+  color: wheat;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.form-select__options {
+  height: fit-content;
+  width: 80px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--lightOrange);
+}
+
+.form-submit:hover {
+  outline: none;
+  background-color: var(--blue);
 }
 
 .loading-indicator {
@@ -154,6 +235,12 @@ main {
   color: var(--lightOrange);
   font-family: var(--main-font);
 }
+
+::placeholder {
+  font-family: var(--main-font);
+}
+
+
 
 
 

@@ -54,7 +54,6 @@ function Home() {
     if (status === "authenticated") {
       getAppreciation();
       addUserToDb();
-      console.log(randomIntFromInterval(1, 6));
     }
   }, [status]);
 
@@ -66,7 +65,7 @@ function Home() {
     <>
       {status === "loading" ? (
         <div className="loading-indicator">
-          <img src="loading.gif" alt="loading..." />
+          <img src="loading.png" alt="loading..." />
         </div>
       ) : (
         <div className="main-content">

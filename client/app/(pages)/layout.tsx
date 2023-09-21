@@ -33,7 +33,7 @@ export default function PagesLayout({
     <>
       {status === "loading" ? (
         <div className="loading-indicator">
-          <img src="loading.gif" alt="loading..." />
+          <img src="loading.png" alt="loading..." />
         </div>
       ) : (
         <>
@@ -121,7 +121,7 @@ export default function PagesLayout({
                     margin: 0,
                     padding: 0,
                     paddingBottom: 70,
-                    background: colorBgContainer,
+                    backgroundColor: "var(--lightBlue)",
                     height: "100vh",
                     overflow: "scroll",
                     minWidth: 500,

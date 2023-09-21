@@ -36,13 +36,15 @@ const Form = (props: UserList) => {
         onSubmit={generateAppreciation}
         className="generate-appreciation__form"
       >
-        <label>
-          <h5>Select the person you want to appreciate:</h5>
+        <label className="form-select">
+          <h5 className="form-select__title">
+            Select the person you want to appreciate:
+          </h5>
           <select
             onChange={(e) => setPerson(e.currentTarget.value)}
             value={person}
             id="meme"
-            className="form-control"
+            className="form-select__options"
           >
             {userArray
               .filter((user) => user.name !== session?.user?.name)
@@ -55,15 +57,19 @@ const Form = (props: UserList) => {
               })}
           </select>
         </label>
-        <label>
-          <h5>What do you appreciate about this person:</h5>
-          <textarea
-            value={comment}
-            placeholder="Write your appreciation here"
-            onChange={(e) => setComment(e.currentTarget.value)}
-            className="input-text"
-          />
-        </label>
+        <div className="form-comment">
+          <h5 className="form-comment__title">
+            What do you appreciate about this person:
+          </h5>
+          <label className="form-comment__label">
+            <textarea
+              value={comment}
+              placeholder="Write your appreciation here"
+              onChange={(e) => setComment(e.currentTarget.value)}
+              className="form-comment__textarea"
+            />
+          </label>
+        </div>
         <input type="submit" value="Send 👏" className="form-submit" />
       </form>
     </div>
