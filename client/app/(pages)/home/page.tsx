@@ -79,6 +79,7 @@ function Home() {
                   receiverName={element.receiverName}
                   comment={element.comment}
                   imageId={randomIntFromInterval(2, 5)}
+                  tenorUrl={""}
                 />
               </li>
             ))}

@@ -2,7 +2,6 @@ import { User, UserList } from "@/app/types";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import GifPicker, { TenorImage } from "gif-picker-react";
-import TenorGif from "./TenorGif";
 import Collapsible from "react-collapsible";
 
 const Form = (props: UserList) => {
