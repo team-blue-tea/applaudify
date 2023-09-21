@@ -54,16 +54,23 @@ function Home() {
     if (status === "authenticated") {
       getAppreciation();
       addUserToDb();
+      console.log(randomIntFromInterval(1, 6));
     }
   }, [status]);
+
+  function randomIntFromInterval(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
 
   return (
     <>
       {status === "loading" ? (
-        <div className="loading-indicator">Loading...</div>
+        <div className="loading-indicator">
+          <img src="loading.gif" alt="loading..." />
+        </div>
       ) : (
         <div className="main-content">
-          <h1>Welcome {user.name}!</h1>
+          <h1 className="main-title">Welcome {user.name}!</h1>
           <ul className="feed-appreciation-list">
             {data.map((element: Appreciation, index) => (
               <li key={index}>
@@ -71,6 +78,7 @@ function Home() {
                   senderName={element.senderName}
                   receiverName={element.receiverName}
                   comment={element.comment}
+                  imageId={randomIntFromInterval(2, 5)}
                 />
               </li>
             ))}

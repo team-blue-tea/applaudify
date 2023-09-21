@@ -12,13 +12,11 @@ const Form = (props: UserList) => {
 
   const generateAppreciation = async (e: any) => {
     e.preventDefault();
-
     const appreciation = {
       senderName: session?.user?.name,
       receiverName: person,
       comment: comment,
     };
-
     const res = await fetch(backendUrl + "/appreciations/add", {
       method: "POST",
       body: JSON.stringify(appreciation),
