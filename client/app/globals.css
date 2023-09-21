@@ -13,8 +13,13 @@
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 
@@ -36,7 +41,7 @@ main {
   animation: 1s ease-out 0s 1 fadeIn;
 }
 
-.avatar{
+.avatar {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -44,7 +49,7 @@ main {
 }
 
 .card-team {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
   display: flex;
@@ -59,7 +64,7 @@ main {
 }
 
 .card-team:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .container-team {
@@ -85,8 +90,8 @@ main {
   animation: 1s ease-out 0s 1 fadeIn;
 }
 
-.logo-img{
-  height:50px;
+.logo-img {
+  height: 50px;
   border-radius: 50%;
   border: 2px solid var(--darkOrange);
 }
@@ -135,7 +140,7 @@ main {
   background-color: var(--lightBlue);
 }
 
-.generate-appreciation__form  {
+.generate-appreciation__form {
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -147,6 +152,7 @@ main {
 
 .form-comment__label {
   align-self: center;
+  width: 90%;
 }
 
 .form-comment {
@@ -166,13 +172,14 @@ main {
 }
 
 .form-comment__textarea {
-  width: 400px;
+  width: 100%;
   height: 100px;
   resize: none;
   border: none;
   border-radius: 4px;
   padding: 8px;
   font-size: 0.7em;
+  font-family: var(--main-font);
 }
 
 .form-comment__textarea:focus {
@@ -182,8 +189,8 @@ main {
 
 .form-submit {
   width: min-content;
-  align-self: flex-end;
-  margin: 20px 0 0 0;
+  align-self: flex-start;
+  justify-self: flex-end;
   padding: 4px 8px;
   font-size: 0.8em;
   background-color: var(--darkBlue);
@@ -240,7 +247,25 @@ main {
   font-family: var(--main-font);
 }
 
+.gif-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 20px;
+}
 
+.collapsible-button {
+  color: var(--yellow);
+  font-family: var(--main-font);
+  font-size: 0.8em;
+  font-weight: 800;
+  text-decoration: underline;
+  padding: 4px 8px;
+}
 
+.collapsible-button:hover {
+  cursor: pointer;
+}
 
-
+.gif-picker-container {
+  margin-top: 20px;
+}
