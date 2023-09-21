@@ -25,7 +25,7 @@ function Appreciate() {
     <>
       {users.length === 0 ? (
         <div className="loading-indicator">
-          <img src="loading.gif" alt="loading..." />
+          <img src="loading.png" alt="loading..." />
         </div>
       ) : (
         <div className="appreciate-container">
