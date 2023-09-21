@@ -1,3 +1,23 @@
+:root {
+  --darkBlue: #00202e;
+  --blue: #003f5c;
+  --lightBlue: #2c4875;
+  --darkPurple: #8a508f;
+  --lightPurple: #bc5090;
+  --salmon: #ff6361;
+  --darkOrange: #ff8531;
+  --lightOrange: #ffa600;
+  --yellow: #ffd380;
+  --card-background: #ffffff80;
+  --main-font: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
 html {
   margin: 0;
   padding: 0;
@@ -7,10 +27,12 @@ html {
 body {
   height: 100%;
   margin: 0;
+
 }
 
 main {
   margin: 0;
+  animation: 1s ease-out 0s 1 fadeIn;
 }
 
 .avatar{
@@ -41,8 +63,8 @@ main {
 }
 
 .demo-logo {
-  color: #FF4B11;
-  margin-top: 20px;
+  color: #1677FF;
+  margin-top: 24px;
 }
 
 .profile-icon {
@@ -55,24 +77,24 @@ main {
   width: 100%;
   display: flex;
   margin-top: 4em;
-}
-
-.ant-menu-item-selected {
-  background-color: #FF4B11;
+  animation: 1s ease-out 0s 1 fadeIn;
 }
 
 .logo-img{
   height:50px;
   border-radius: 50%;
+  border: 2px solid var(--darkOrange);
 }
 
 .appreciation-card {
-  width: 400px;
-  border: rgba(8, 165, 244, 0.833) 0.5px solid;
+  height: 157px;
+  width: 432px;
+  border: var(--lightOrange) 2px solid;
   margin-bottom: 10px;
   box-shadow: 0px 0px 50px -20px rgba(8, 165, 244, 0.381);
-  background-color: #6264966a;
-  color: wheat;
+  background-position: bottom;
+  font-family: var(--main-font);
+  animation: 1s ease-out 0s 1 fadeIn;
 }
 
 .feed-appreciation-list {
@@ -85,17 +107,22 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(60, 59, 59);
+  background-color: var(--lightBlue);
+}
+
+.main-title {
+  color: var(--yellow);
 }
 
 .user-avatar {
-  border: #ddd 0.5px solid;
+  border: var(--darkOrange) 2px solid;
   border-radius: 50%;
   scale: 1.2;
 }
 
 .whitespace {
   width: 20vw;
+  background-color: var(--lightBlue);
 }
 
 .input-text {
@@ -113,5 +140,20 @@ main {
 .form-submit {
   width: min-content;
 }
+
+.loading-indicator {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--lightBlue);
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.app-title {
+  color: var(--lightOrange);
+  font-family: var(--main-font);
+}
+
 
 

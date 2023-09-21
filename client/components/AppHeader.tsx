@@ -20,14 +20,14 @@ const App = (props: ImageUrl) => {
           alignItems: "center",
           justifyContent: "space-between",
           height: "4rem",
-          paddingLeft: 380,
-          paddingRight: 380,
+          padding: "0 400px",
+          animation: "1s ease-out 0s 1 fadeIn",
         }}
       >
         <Link href={""} className="demo-logo">
           <img src="logo-img.png" className="logo-img"></img>
         </Link>
-        Applaudify
+        <h1 className="app-title">APPLAUDIFY</h1>
         {/*         <div className="search-field">
           <input type="text" className="search-input" />
         </div> */}

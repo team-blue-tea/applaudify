@@ -12,6 +12,15 @@ export const AppreciationCard = (props: Appreciation) => {
       title={`${props.senderName} → ${props.receiverName}`}
       bordered={true}
       hoverable={true}
+      headStyle={{ backgroundColor: "var(--card-background)" }}
+      bodyStyle={{
+        backgroundColor: "var(--card-background)",
+        height: "100px",
+        paddingTop: 0,
+      }}
+      style={{
+        backgroundImage: 'url("/card-background-' + props.imageId + '.png")',
+      }}
     >
       <p>{props.comment}</p>
     </Card>

@@ -2,6 +2,7 @@ export type Appreciation = {
   senderName: string,
   receiverName: string,
   comment: string,
+  imageId: number,
 }
 
 export type User = {

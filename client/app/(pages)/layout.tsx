@@ -27,68 +27,83 @@ export default function PagesLayout({
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   return (
     <>
-      <AppHeader url={session?.user?.image as string} />
-      <div className="layout-container">
-        <div className="whitespace"></div>
-        <Layout
-          style={{
-            margin: 0,
-          }}
-        >
-          <Sider
-            trigger={null}
-            collapsible
-            collapsed={collapsed}
-            className="left-sider"
-            style={{ height: "100vh" }}
-          >
-            <div className="demo-logo-vertical" />
-            <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={["1"]}
-              items={[
-                {
-                  key: "1",
-                  icon: (
-                    <Link href="/home">
-                      <BookOutlined />
-                    </Link>
-                  ),
-                  label: "Feed",
-                },
-                {
-                  key: "2",
-                  icon: (
-                    <Link href="/appreciate">
-                      <SafetyCertificateOutlined />
-                    </Link>
-                  ),
-                  label: "Appreciate",
-                },
-                /*                 {
+      {status === "loading" ? (
+        <div className="loading-indicator">
+          <img src="loading.gif" alt="loading..." />
+        </div>
+      ) : (
+        <>
+          <AppHeader url={session?.user?.image as string} />
+          <div className="layout-container">
+            <div className="whitespace"></div>
+            <Layout
+              style={{
+                margin: 0,
+              }}
+            >
+              <Sider
+                trigger={null}
+                collapsible
+                collapsed={collapsed}
+                className="left-sider"
+                style={{
+                  height: "100vh",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <div className="demo-logo-vertical" />
+                <Menu
+                  theme="dark"
+                  mode="inline"
+                  defaultSelectedKeys={["1"]}
+                  style={{
+                    width: "160px",
+                  }}
+                  items={[
+                    {
+                      key: "1",
+                      icon: (
+                        <Link href="/home">
+                          <BookOutlined />
+                        </Link>
+                      ),
+                      label: "Feed",
+                    },
+                    {
+                      key: "2",
+                      icon: (
+                        <Link href="/appreciate">
+                          <SafetyCertificateOutlined />
+                        </Link>
+                      ),
+                      label: "Appreciate",
+                    },
+                    /*                 {
                   key: "3",
                   icon: <TrophyOutlined />,
                   label: "Badge",
                 }, */
-                {
-                  key: "4",
-                  icon: <UserOutlined />,
-                  label: "Profile",
-                },
-              ]}
-            />
-          </Sider>
-          <Layout
-            style={{
-              margin: 0,
-            }}
-          >
-            {/* <Header style={{ padding: 0, background: colorBgContainer }}>
+                    {
+                      key: "4",
+                      icon: <UserOutlined />,
+                      label: "Profile",
+                    },
+                  ]}
+                />
+              </Sider>
+              <Layout
+                style={{
+                  margin: 0,
+                }}
+              >
+                {/* <Header style={{ padding: 0, background: colorBgContainer }}>
               <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -101,58 +116,69 @@ export default function PagesLayout({
               }}
             />
             </Header> */}
-            <Content
-              style={{
-                margin: 0,
-                padding: 0,
-                paddingBottom: 70,
-                background: colorBgContainer,
-                height: "100vh",
-                overflow: "scroll",
-                minWidth: 500,
-              }}
-            >
-              {children}
-            </Content>
-          </Layout>
-          <Sider
-            trigger={null}
-            collapsible
-            collapsed={collapsed}
-            className="right-sider"
-            style={{ height: "100vh" }}
-          >
-            <div className="demo-logo-vertical" />
-            <Menu
-              theme="dark"
-              mode="inline"
-              defaultSelectedKeys={["0"]}
-              items={[
-                {
-                  key: "1",
-                  icon: <CopyrightOutlined />,
-                  label: "SALT",
-                },
-                /*                 {
+                <Content
+                  style={{
+                    margin: 0,
+                    padding: 0,
+                    paddingBottom: 70,
+                    background: colorBgContainer,
+                    height: "100vh",
+                    overflow: "scroll",
+                    minWidth: 500,
+                  }}
+                >
+                  {children}
+                </Content>
+              </Layout>
+              <Sider
+                trigger={null}
+                collapsible
+                collapsed={collapsed}
+                className="right-sider"
+                style={{
+                  height: "100vh",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <div className="demo-logo-vertical" />
+                <Menu
+                  theme="dark"
+                  mode="inline"
+                  defaultSelectedKeys={["0"]}
+                  style={{
+                    width: "140px",
+                  }}
+                  items={[
+                    {
+                      key: "1",
+                      icon: <CopyrightOutlined />,
+                      label: "SALT",
+                    },
+                    /*                 {
                   key: "2",
                   icon: <SettingOutlined />,
                   label: "Settings",
                 }, */
-                {
-                  key: "3",
-                  icon: (
-                    <Link href="/contact">
-                      <QuestionCircleOutlined />
-                    </Link>
-                  ),
-                  label: "About Us",
-                },
-              ]}
-            />
-          </Sider>
-        </Layout>
-        <div className="whitespace"></div>
-      </div>
+                    {
+                      key: "3",
+                      icon: (
+                        <Link href="/contact">
+                          <QuestionCircleOutlined />
+                        </Link>
+                      ),
+                      label: "About Us",
+                    },
+                  ]}
+                />
+              </Sider>
+            </Layout>
+            <div className="whitespace"></div>
+          </div>
+        </>
+      )}
     </>
   );
 }
