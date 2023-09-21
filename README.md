@@ -10,8 +10,9 @@ Welcome to **Applaudify** – the ultimate application for organizations and emp
 <img align="right" src="https://i.imgur.com/S0ASTQ3.png" width="200px" ></img>
 - [Getting Started](#getting-started)
 - [User Guide](#user-guide)
+- [Contributing](#contributing)
 - [License](#license)
-   <!--- - [Contributing](#contributing) --->
+
 
 ## Introduction
 
@@ -49,9 +50,9 @@ For more detailed instructions and dependencies, please email us to our [Install
 
 Wondering how to make the most of **Applaudify**? Our [Tutorial video](link_to_user_guide_here) provides step-by-step instructions and tips to navigate the application effectively. From recognizing colleagues to earning badges, it's all covered!
 
-<!--- ## Contributing
+## Contributing
 
-We welcome contributions from the community to make **Applaudify** even better! Whether you're a developer, designer, or just an enthusiastic user with a great idea, check out our [Contribution Guidelines](link_to_contribution_guidelines_here) to get started. --->
+We welcome contributions from the community to make **Applaudify** even better! Whether you're a developer, designer, or just an enthusiastic user with a great idea, check out our [Contribution Guidelines](link_to_contribution_guidelines_here) to get started.
 
 ## License
 
