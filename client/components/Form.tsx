@@ -1,12 +1,15 @@
 import { User, UserList } from "@/app/types";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
+import GifPicker, { TenorImage } from "gif-picker-react";
+import Collapsible from "react-collapsible";
 
 const Form = (props: UserList) => {
   const [person, setPerson] = useState("");
   const [userArray, setUserArray] = useState(props.list);
   const { data: session, status } = useSession();
   const [comment, setComment] = useState("");
+  const [selectedGif, setSelectedGif] = useState("");
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -16,6 +19,8 @@ const Form = (props: UserList) => {
       senderName: session?.user?.name,
       receiverName: person,
       comment: comment,
+      imageId: null,
+      tenorUrl: selectedGif,
     };
     const res = await fetch(backendUrl + "/appreciations/add", {
       method: "POST",
@@ -72,6 +77,11 @@ const Form = (props: UserList) => {
         </div>
         <input type="submit" value="Send 👏" className="form-submit" />
       </form>
+      <Collapsible trigger={"Add GIF"}>
+        <GifPicker tenorApiKey={process.env.NEXT_PUBLIC_TENOR_API as string} onGifClick={(gif) => {
+          setSelectedGif(gif.url)
+        }} />
+      </Collapsible>
     </div>
   );
 };
