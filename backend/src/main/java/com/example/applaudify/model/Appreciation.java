@@ -9,13 +9,12 @@ public class Appreciation {
     private String id;
     private String senderName;
     private String receiverName;
-
-    public Appreciation() {
-    }
-
     private String comment;
     private String imageId;
     private String tenorUrl;
+
+    public Appreciation() {
+    }
 
     public Appreciation(String id, String senderName, String receiverName, String comment, String imageId, String tenorUrl) {
         this.id = id;
@@ -47,8 +46,6 @@ public class Appreciation {
     public void setTenorUrl(String tenorUrl) {
         this.tenorUrl = tenorUrl;
     }
-
-
 
     public String getSenderName() {
         return senderName;

@@ -15,7 +15,7 @@ const Form = (props: UserList) => {
   const [comment, setComment] = useState("");
   const [selectedGif, setSelectedGif] = useState("");
   const [appreciationSent, setAppreciationSent] = useState(false);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -94,6 +94,7 @@ const Form = (props: UserList) => {
               openedClassName="collapsible-button"
               trigger={"Add GIF"}
               open={open}
+              onOpening={() => setOpen(true)}
             >
               <div className="gif-picker-container">
                 <GifPicker
