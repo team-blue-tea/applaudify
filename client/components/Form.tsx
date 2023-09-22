@@ -5,8 +5,12 @@ import GifPicker, { TenorImage } from "gif-picker-react";
 import Collapsible from "react-collapsible";
 
 const Form = (props: UserList) => {
+  const firstIndex: User = {
+    name: "Select:",
+  };
+
   const [person, setPerson] = useState("");
-  const [userArray, setUserArray] = useState(props.list);
+  const [userArray, setUserArray] = useState([firstIndex, ...props.list]);
   const { data: session, status } = useSession();
   const [comment, setComment] = useState("");
   const [selectedGif, setSelectedGif] = useState("");
@@ -31,10 +35,6 @@ const Form = (props: UserList) => {
     });
   };
 
-  useEffect(() => {
-    userArray.unshift({ name: "Select:" });
-  }, []);
-
   return (
     <div className="form-container">
       <form
@@ -52,7 +52,7 @@ const Form = (props: UserList) => {
             className="form-select__options"
           >
             {userArray
-              .filter((user) => user.name !== session?.user?.name)
+              .filter((user: User) => user.name !== session?.user?.name)
               .map((user, index) => {
                 return (
                   <option key={index} value={user.name}>
@@ -77,12 +77,21 @@ const Form = (props: UserList) => {
         </div>
         <div className="gif-container">
           <div className="gif-list">
-            <Collapsible className="collapsible-button" openedClassName="collapsible-button" trigger={"Add GIF"}>
+            <Collapsible
+              className="collapsible-button"
+              openedClassName="collapsible-button"
+              trigger={"Add GIF"}
+            >
               <div className="gif-picker-container">
-                <GifPicker width={200} height={300} tenorApiKey={process.env.NEXT_PUBLIC_TENOR_API as string} onGifClick={(gif) => {
-                  setSelectedGif(gif.url);
-                  event?.preventDefault();
-                }} />
+                <GifPicker
+                  width={200}
+                  height={300}
+                  tenorApiKey={process.env.NEXT_PUBLIC_TENOR_API as string}
+                  onGifClick={(gif) => {
+                    setSelectedGif(gif.url);
+                    event?.preventDefault();
+                  }}
+                />
               </div>
             </Collapsible>
           </div>
