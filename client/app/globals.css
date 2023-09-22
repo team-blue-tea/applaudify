@@ -94,7 +94,7 @@ main {
 .appreciation-card {
   height: 157px;
   width: 432px;
-  border: var(--lightOrange) 2px solid;
+  border: var(--lightBlue) 2px solid;
   margin-bottom: 10px;
   box-shadow: 0px 0px 50px -20px rgba(8, 165, 244, 0.381);
   background-position: bottom;
