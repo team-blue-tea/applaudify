@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://ilijakrilovic:SgjIwqkZMqsDty39@cluster0.tzzvh1b.mongodb.net/?retryWrites=true&w=majority
+      uri: ${MONGO_CONNECTION_STRING}
       database: applaudify
 server:
   address: 0.0.0.0

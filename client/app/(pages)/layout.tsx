@@ -56,6 +56,7 @@ export default function PagesLayout({
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
+                  paddingTop: 45,
                 }}
               >
                 <div className="demo-logo-vertical" />
@@ -141,6 +142,7 @@ export default function PagesLayout({
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
+                  paddingTop: 45,
                 }}
               >
                 <div className="demo-logo-vertical" />
@@ -152,11 +154,11 @@ export default function PagesLayout({
                     width: "140px",
                   }}
                   items={[
-                    {
+                    /*                   {
                       key: "1",
                       icon: <CopyrightOutlined />,
                       label: "SALT",
-                    },
+                    }, */
                     /*                 {
                   key: "2",
                   icon: <SettingOutlined />,

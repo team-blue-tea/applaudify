@@ -18,3 +18,11 @@ export type ImageUrl = {
 export type UserList = {
   list: User[],
 }
+
+export type Contact = {
+  name: string,
+  avatarImage: string,
+  role: string,
+  gitUrl: string,
+  linkedInUrl: string,
+}
