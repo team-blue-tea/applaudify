@@ -1,33 +1,33 @@
-import Link from 'next/link'
-import React from 'react'
+import ContactCard from "@/components/ContactCard";
+import React from "react";
 
 export default function Contact() {
   return (
-    <div>
-      <div className="card-team">
-                <img src="su.png" alt="Avatar" className="avatar"/>
-                <div className="container-team">
-                    <h5><b>Sudha Madhuri Poojari</b></h5> 
-                    <p>Full stack developer</p> 
-                    <Link href={"https://github.com/sudhamadhuripoojari"}> Git hub</Link> 
-                </div>
-                </div>
-                <div className="card-team">
-                <img src="img1-modified.png" alt="Avatar" className="avatar"/>
-                <div className="container-team">
-                    <h5><b>Tim Hansson Meng</b></h5> 
-                    <p>Full stack developer</p> 
-                    <Link href={"https://github.com/Slipzter"}> Git hub</Link> 
-                </div>
-                </div>
-                <div className="card-team">
-                <img src="Ilija.png" alt="Avatar" className="avatar"/>
-                <div className="container-team">
-                    <h5><b>Ilija Krilovic</b></h5>          
-                    <p>Full stack developer</p> 
-                    <Link href={"https://github.com/ica1130"}> Git hub</Link> 
-                </div>
-                </div>
+    <div className="contact-page">
+      <h1 className="contact-title">Meet the team:</h1>
+      <div className="cards-container">
+        <ContactCard
+          name="Sudha Madhuri Poojari"
+          avatarImage="su.png"
+          role="Full Stack Developer"
+          gitUrl="https://github.com/sudhamadhuripoojari"
+          linkedInUrl="https://www.linkedin.com/in/sudha-madhuri-poojari/"
+        />
+        <ContactCard
+          name="Tim Hansson Meng"
+          avatarImage="img1-modified.png"
+          role="Full Stack Developer"
+          gitUrl="https://github.com/Slipzter"
+          linkedInUrl="https://www.linkedin.com/in/tim-hansson-meng-b9087b118/"
+        />
+        <ContactCard
+          name="Ilija Krilovic"
+          avatarImage="Ilija.png"
+          role="Full Stack Developer"
+          gitUrl="https://github.com/ica1130"
+          linkedInUrl="https://www.linkedin.com/in/ilijakrilovic/"
+        />
+      </div>
     </div>
-  )
+  );
 }

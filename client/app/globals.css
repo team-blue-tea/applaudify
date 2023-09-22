@@ -46,17 +46,7 @@ main {
   height: 100px;
   border-radius: 50%;
   margin-right: 10px;
-}
-
-.card-team {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ddd;
-  margin-bottom: 10px;
+  border: var(--darkOrange) 2px solid;
 }
 
 .feed-appreciation-list {
@@ -283,4 +273,57 @@ main {
 
 .with-gif {
   height: 257px;
+}
+
+.git-icon {
+  height: 30px;
+}
+
+.linkedin-icon {
+  height: 30px;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px ;
+}
+
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-title {
+  color: var(--yellow);
+}
+
+.card-team {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 100%;
+  min-width: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 10px 0;
+  margin: 0;
+  background-color: var(--darkBlue);
+  color: var(--lightOrange);
+}
+
+.contact-role {
+  color: var(--yellow);
+  font-size: 0.9em;
+  margin-bottom: 30px;
+}
+
+.contact-name {
+  font-size: 0.9em;
+}
+
+.linkedin-icon {
+  margin-left: 8px;
 }
