@@ -9,11 +9,13 @@ const Form = (props: UserList) => {
     name: "Select:",
   };
 
-  const [person, setPerson] = useState("");
+  const [person, setPerson] = useState("Select:");
   const [userArray, setUserArray] = useState([firstIndex, ...props.list]);
   const { data: session, status } = useSession();
   const [comment, setComment] = useState("");
   const [selectedGif, setSelectedGif] = useState("");
+  const [appreciationSent, setAppreciationSent] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -33,12 +35,21 @@ const Form = (props: UserList) => {
         "Content-Type": "application/json",
       },
     });
+    res.ok ? setAppreciationSent(true) : setAppreciationSent(false);
+  };
+
+  const alertUser = () => {
+    alert("You need to select a person and write an appreciation first!");
   };
 
   return (
     <div className="form-container">
       <form
-        onSubmit={generateAppreciation}
+        onSubmit={
+          comment !== "" && person !== "Select:"
+            ? generateAppreciation
+            : alertUser
+        }
         className="generate-appreciation__form"
       >
         <label className="form-select">
@@ -72,6 +83,7 @@ const Form = (props: UserList) => {
               placeholder="Write your appreciation here"
               onChange={(e) => setComment(e.currentTarget.value)}
               className="form-comment__textarea"
+              maxLength={120}
             />
           </label>
         </div>
@@ -81,6 +93,7 @@ const Form = (props: UserList) => {
               className="collapsible-button"
               openedClassName="collapsible-button"
               trigger={"Add GIF"}
+              open={open}
             >
               <div className="gif-picker-container">
                 <GifPicker
@@ -90,6 +103,7 @@ const Form = (props: UserList) => {
                   onGifClick={(gif) => {
                     setSelectedGif(gif.url);
                     event?.preventDefault();
+                    setOpen(false);
                   }}
                 />
               </div>
@@ -98,6 +112,9 @@ const Form = (props: UserList) => {
           <input type="submit" value="Send 👏" className="form-submit" />
         </div>
       </form>
+      {appreciationSent === true ? (
+        <h3 className="submit-confirmation">Appreciation Sent 🎈</h3>
+      ) : null}
     </div>
   );
 };

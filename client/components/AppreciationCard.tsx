@@ -25,6 +25,7 @@ export const AppreciationCard = (props: Appreciation) => {
         backgroundColor: "var(--card-background)",
         height: size,
         paddingTop: 0,
+        fontFamily: "var(--main-font)",
       }}
       style={{
         backgroundImage: 'url("/card-background-' + props.imageId + '.png")',
@@ -35,7 +36,9 @@ export const AppreciationCard = (props: Appreciation) => {
         <p>{props.comment}</p>
       ) : (
         <div className="text-and-gif">
-          <p>{props.comment}</p>
+          <div className="comment-container">
+            <p className="card-comment">{props.comment}</p>
+          </div>
           <img className="gif-image" src={props.tenorUrl} />
         </div>
       )}
