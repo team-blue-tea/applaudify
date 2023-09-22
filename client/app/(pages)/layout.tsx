@@ -91,11 +91,11 @@ export default function PagesLayout({
                   icon: <TrophyOutlined />,
                   label: "Badge",
                 }, */
-                    {
-                      key: "4",
-                      icon: <UserOutlined />,
-                      label: "Profile",
-                    },
+                    /*                     {
+                                          key: "4",
+                                          icon: <UserOutlined />,
+                                          label: "Profile",
+                                        }, */
                   ]}
                 />
               </Sider>
