@@ -58,6 +58,6 @@ We welcome contributions from the community to make **Applaudify** even better! 
 
 This project is licensed under the [MIT License](link_to_license_here)
 
-----
+-----
 
 Start celebrating success, fostering a culture of recognition, and enhancing your organization's experience with **Applaudify** today! 🎉
