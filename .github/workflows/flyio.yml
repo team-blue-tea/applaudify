@@ -6,20 +6,19 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      DIRECTORY_PATH: backend
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: Change directory to backend
-        run: cd backend
-      
       - name: Build JAR file
         run: mvn clean package
 
       - name: Build Docker image
         run: docker build -t applaudify .
-        
+
       - name: Deploy to Fly.io
-        run: flyctl deploy --remote-only
-      
-        env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+        uses: fly/flyctl-deploy@v1
+        with:
+          api_token: ${{ secrets.FLY_API_TOKEN }}
