@@ -16,8 +16,6 @@ import java.util.List;
 @CrossOrigin("*")
 public class UserController {
 
-    private static final Logger logger = LoggerFactory.getLogger(ApplaudifyApplication.class);
-
     private final UserService userService;
 
     @Autowired
@@ -33,7 +31,6 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity<User> addUser(@RequestBody User user) {
-        logger.info("Received a request to create a user: {}", user);
         User findUser = userService.findUserByEmail(user.getEmail());
         if (findUser == null) {
             return ResponseEntity.ok(userService.addUser(user));
