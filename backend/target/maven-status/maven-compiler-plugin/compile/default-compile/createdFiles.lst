@@ -1,2 +1,9 @@
+com\example\applaudify\controller\AppreciationController.class
+com\example\applaudify\service\AppreciationService.class
+com\example\applaudify\service\UserService.class
 com\example\applaudify\ApplaudifyApplication.class
-com\example\applaudify\controller\Controller.class
+com\example\applaudify\model\Appreciation.class
+com\example\applaudify\repository\UserRepository.class
+com\example\applaudify\model\User.class
+com\example\applaudify\repository\AppreciationRepository.class
+com\example\applaudify\controller\UserController.class

@@ -1,10 +1,9 @@
 C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\repository\UserRepository.java
 C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\service\UserService.java
-C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\Appreciation.java
 C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\controller\UserController.java
-C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\controller\Controller.java
-C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\User.java
+C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\model\Appreciation.java
 C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\repository\AppreciationRepository.java
+C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\model\User.java
 C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\controller\AppreciationController.java
 C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\service\AppreciationService.java
 C:\Users\user1\Desktop\applaudify\backend\src\main\java\com\example\applaudify\ApplaudifyApplication.java
