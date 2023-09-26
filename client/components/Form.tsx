@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 import GifPicker, { TenorImage } from "gif-picker-react";
 import Collapsible from "react-collapsible";
+import ImageGallery from "react-image-gallery";
 
 const Form = (props: UserList) => {
   const firstIndex: User = {
@@ -16,6 +17,7 @@ const Form = (props: UserList) => {
   const [selectedGif, setSelectedGif] = useState("");
   const [appreciationSent, setAppreciationSent] = useState(false);
   const [open, setOpen] = useState(false);
+  const [imageId, setImageId] = useState([]);
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -42,6 +44,25 @@ const Form = (props: UserList) => {
     alert("You need to select a person and write an appreciation first!");
   };
 
+  const images = [
+    {
+      original: "/card-background-2.png",
+      thumbnail: "/card-background-2.png",
+    },
+    {
+      original: "/card-background-3.png",
+      thumbnail: "/card-background-3.png",
+    },
+    {
+      original: "/card-background-4.png",
+      thumbnail: "/card-background-4.png",
+    },
+    {
+      original: "/card-background-5.png",
+      thumbnail: "/card-background-5.png",
+    },
+  ];
+
   return (
     <div className="form-container">
       <form
@@ -59,7 +80,6 @@ const Form = (props: UserList) => {
           <select
             onChange={(e) => setPerson(e.currentTarget.value)}
             value={person}
-            id="meme"
             className="form-select__options"
           >
             {userArray
@@ -73,6 +93,18 @@ const Form = (props: UserList) => {
               })}
           </select>
         </label>
+        <Collapsible
+          className="collapsible-button"
+          openedClassName="collapsible-button"
+          trigger={"Add the background for appreciation."}
+        >
+          <ImageGallery
+            items={images}
+            showFullscreenButton={false}
+            showPlayButton={false}
+            /* onClick={} */
+          />
+        </Collapsible>
         <div className="form-comment">
           <h5 className="form-comment__title">
             What do you appreciate about this person:
@@ -84,6 +116,11 @@ const Form = (props: UserList) => {
               onChange={(e) => setComment(e.currentTarget.value)}
               className="form-comment__textarea"
               maxLength={120}
+              style={
+                {
+                  /*  backgroundColor: "red"  */
+                }
+              }
             />
           </label>
         </div>
