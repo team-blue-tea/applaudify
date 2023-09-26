@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -37,4 +38,27 @@ public class UserServiceTest {
 
         assertEquals(mockedUserList, userList);
     }
+
+    @Test
+    void shouldFindUserByEmail() {
+
+        User mockedUser = new User("testemail1@gmail.com", "Test Name 1");
+        when(userRepository.findByEmail(mockedUser.getEmail())).thenReturn(mockedUser);
+
+        User user = userService.findUserByEmail(mockedUser.getEmail());
+
+        assertEquals(mockedUser, user);
+    }
+
+    @Test
+    void shouldReturnNullForNonExistingEmail() {
+
+        when(userRepository.findByEmail("testemail1@gmail.com")).thenReturn(null);
+
+        User user = userService.findUserByEmail("testemail1@gmail.com");
+
+        assertNull(user);
+    }
+
+
 }
