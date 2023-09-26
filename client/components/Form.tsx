@@ -1,6 +1,6 @@
 import { User, UserList } from "@/app/types";
 import { useSession } from "next-auth/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import GifPicker, { TenorImage } from "gif-picker-react";
 import Collapsible from "react-collapsible";
 import ImageGallery from "react-image-gallery";
@@ -17,7 +17,7 @@ const Form = (props: UserList) => {
   const [selectedGif, setSelectedGif] = useState("");
   const [appreciationSent, setAppreciationSent] = useState(false);
   const [open, setOpen] = useState(false);
-  const [imageId, setImageId] = useState([]);
+  const [imageId, setImageId] = useState("card-background-2.png");
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -27,7 +27,7 @@ const Form = (props: UserList) => {
       senderName: session?.user?.name,
       receiverName: person,
       comment: comment,
-      imageId: null,
+      imageId: imageId,
       tenorUrl: selectedGif,
     };
     const res = await fetch(backendUrl + "/appreciations/add", {
@@ -46,22 +46,27 @@ const Form = (props: UserList) => {
 
   const images = [
     {
-      original: "/card-background-2.png",
-      thumbnail: "/card-background-2.png",
+      original: "card-background-2.png",
+      thumbnail: "card-background-2.png",
     },
     {
-      original: "/card-background-3.png",
-      thumbnail: "/card-background-3.png",
+      original: "card-background-3.png",
+      thumbnail: "card-background-3.png",
     },
     {
-      original: "/card-background-4.png",
-      thumbnail: "/card-background-4.png",
+      original: "card-background-4.png",
+      thumbnail: "card-background-4.png",
     },
     {
-      original: "/card-background-5.png",
-      thumbnail: "/card-background-5.png",
+      original: "card-background-5.png",
+      thumbnail: "card-background-5.png",
     },
   ];
+
+  const handleImageClick = (e: any) => {
+    const imageURL = e.target.src;
+    setImageId(imageURL);
+  };
 
   return (
     <div className="form-container">
@@ -94,15 +99,16 @@ const Form = (props: UserList) => {
           </select>
         </label>
         <Collapsible
-          className="collapsible-button"
+          className="collapsible-button gallery"
           openedClassName="collapsible-button"
-          trigger={"Add the background for appreciation."}
+          trigger={"Select background image"}
         >
           <ImageGallery
             items={images}
             showFullscreenButton={false}
             showPlayButton={false}
-            /* onClick={} */
+            onClick={handleImageClick}
+            additionalClass="image-gallery"
           />
         </Collapsible>
         <div className="form-comment">
@@ -116,11 +122,10 @@ const Form = (props: UserList) => {
               onChange={(e) => setComment(e.currentTarget.value)}
               className="form-comment__textarea"
               maxLength={120}
-              style={
-                {
-                  /*  backgroundColor: "red"  */
-                }
-              }
+              style={{
+                background: `url(${imageId})`,
+                maxHeight: 300,
+              }}
             />
           </label>
         </div>

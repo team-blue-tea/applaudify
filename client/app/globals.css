@@ -360,3 +360,7 @@ main {
 }
 
 .submit-confirmation {}
+
+.image-gallery {
+  scale: 0.8;
+}
