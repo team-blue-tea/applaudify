@@ -3,6 +3,7 @@ package com.example.applaudify.controller;
 import com.example.applaudify.model.Appreciation;
 import com.example.applaudify.service.AppreciationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,6 @@ public class AppreciationController {
     @PostMapping("/add")
     public ResponseEntity<Appreciation> addAppreciation(@RequestBody Appreciation appreciation) {
         Appreciation newAppreciation = appreciationService.addAppreciation(appreciation);
-        return ResponseEntity.ok(newAppreciation);
+        return new ResponseEntity<>(newAppreciation, HttpStatus.CREATED);
     }
 }
