@@ -77,6 +77,8 @@ function Home() {
                 <AppreciationCard
                   senderName={element.senderName}
                   receiverName={element.receiverName}
+                  senderImageURL={element.senderImageURL}
+                  receiverImageURL={element.receiverImageURL}
                   comment={element.comment}
                   imageId={/* randomIntFromInterval(2, 5) */ 0}
                   tenorUrl={element.tenorUrl}

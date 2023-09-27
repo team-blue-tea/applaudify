@@ -60,6 +60,8 @@ function page() {
                     <AppreciationCard
                       senderName={element.senderName}
                       receiverName={element.receiverName}
+                      senderImageURL={element.senderImageURL}
+                      receiverImageURL={element.receiverImageURL}
                       comment={element.comment}
                       imageId={0}
                       tenorUrl={element.tenorUrl}

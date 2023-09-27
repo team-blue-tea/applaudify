@@ -18,6 +18,7 @@ const Form = (props: UserList) => {
   const [appreciationSent, setAppreciationSent] = useState(false);
   const [open, setOpen] = useState(false);
   const [imageId, setImageId] = useState("card-background-2.png");
+  const [receiverAvatar, setReceiverAvatar] = useState("");
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -26,6 +27,8 @@ const Form = (props: UserList) => {
     const appreciation = {
       senderName: session?.user?.name,
       receiverName: person,
+      senderImageURL: session?.user?.image,
+      receiverImageURL: receiverAvatar,
       comment: comment,
       imageId: imageId,
       tenorUrl: selectedGif,
@@ -83,7 +86,10 @@ const Form = (props: UserList) => {
             Select the person you want to appreciate:
           </h5>
           <select
-            onChange={(e) => setPerson(e.currentTarget.value)}
+            onChange={(e) => {
+              setReceiverAvatar(e.currentTarget.value as string);
+              setPerson(e.currentTarget.textContent as string);
+            }}
             value={person}
             className="form-select__options"
           >
@@ -91,7 +97,7 @@ const Form = (props: UserList) => {
               .filter((user: User) => user.name !== session?.user?.name)
               .map((user, index) => {
                 return (
-                  <option key={index} value={user.name}>
+                  <option key={index} value={user.imageURL}>
                     {user.name}
                   </option>
                 );

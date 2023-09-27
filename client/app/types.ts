@@ -1,6 +1,8 @@
 export type Appreciation = {
   senderName: string,
   receiverName: string,
+  senderImageURL: string,
+  receiverImageURL: string,
   comment: string,
   imageId: number,
   tenorUrl: string,
