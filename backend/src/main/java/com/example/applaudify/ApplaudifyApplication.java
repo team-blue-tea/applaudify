@@ -12,9 +12,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @SpringBootApplication
 @EnableMongoRepositories
 public class ApplaudifyApplication {
-
-	private static final Logger logger = LoggerFactory.getLogger(ApplaudifyApplication.class);
-
 	public static void main(String[] args) {
 		SpringApplication.run(ApplaudifyApplication.class, args);
 	}
