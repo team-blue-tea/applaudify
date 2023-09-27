@@ -20,7 +20,7 @@ export const AppreciationCard = (props: Appreciation) => {
       title={`${props.senderName} → ${props.receiverName}`}
       bordered={true}
       hoverable={false}
-      headStyle={{ backgroundColor: "var(--card-background)" }}
+      headStyle={{ backgroundColor: "var(--teal)", color: "#fff" }}
       bodyStyle={{
         backgroundColor: "var(--card-background)",
         height: size,

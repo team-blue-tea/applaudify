@@ -17,8 +17,9 @@ function Home() {
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
   const user: User = {
-    email: session?.user?.email!,
-    name: session?.user?.name!,
+    email: session?.user?.email as string,
+    name: session?.user?.name as string,
+    imageURL: session?.user?.image as string,
   };
 
   const [data, setData] = useState([]);
@@ -77,7 +78,7 @@ function Home() {
                   senderName={element.senderName}
                   receiverName={element.receiverName}
                   comment={element.comment}
-                  imageId={randomIntFromInterval(2, 5)}
+                  imageId={/* randomIntFromInterval(2, 5) */ 0}
                   tenorUrl={element.tenorUrl}
                 />
               </li>

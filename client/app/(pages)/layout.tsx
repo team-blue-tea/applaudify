@@ -71,7 +71,7 @@ export default function PagesLayout({
                     {
                       key: "1",
                       icon: (
-                        <Link href="/home">
+                        <Link href="/feed">
                           <BookOutlined />
                         </Link>
                       ),
@@ -91,11 +91,15 @@ export default function PagesLayout({
                   icon: <TrophyOutlined />,
                   label: "Badge",
                 }, */
-                    /*                     {
-                                          key: "4",
-                                          icon: <UserOutlined />,
-                                          label: "Profile",
-                                        }, */
+                    {
+                      key: "4",
+                      icon: (
+                        <Link href="/profile">
+                          <UserOutlined />
+                        </Link>
+                      ),
+                      label: "Profile",
+                    },
                   ]}
                 />
               </Sider>
