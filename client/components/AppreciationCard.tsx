@@ -14,10 +14,21 @@ export const AppreciationCard = (props: Appreciation) => {
     size = "200px";
   }
 
+  const generateCardTitle = () => {
+    return (
+      <div>
+        <img className="logo-img title" src={props.senderImageURL} alt="" />
+        {props.senderName} →{" "}
+        <img className="logo-img title" src={props.receiverImageURL} alt="" />
+        {props.receiverName}
+      </div>
+    );
+  };
+
   return (
     <Card
       className={`appreciation-card ${hasGif}`}
-      title={`${props.senderName} → ${props.receiverName}`}
+      title={generateCardTitle()}
       bordered={true}
       hoverable={false}
       headStyle={{ backgroundColor: "var(--teal)", color: "#fff" }}

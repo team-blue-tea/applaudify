@@ -48,7 +48,7 @@ function page() {
           </div>
         ) : (
           <div className="main-content">
-            <h2>Your {showingSent ? "Received" : "Sent"} Appreciations:</h2>
+            <h2>Your {!showingSent ? "Received" : "Sent"} Appreciations:</h2>
             <ul className="feed-appreciation-list">
               {data
                 .filter(
