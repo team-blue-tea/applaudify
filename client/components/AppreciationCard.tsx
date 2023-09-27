@@ -16,9 +16,11 @@ export const AppreciationCard = (props: Appreciation) => {
 
   const generateCardTitle = () => {
     return (
-      <div>
+      <div className="title-container">
         <img className="logo-img title" src={props.senderImageURL} alt="" />
-        {props.senderName} →{" "}
+        {props.senderName}
+        <span className="arrow">➞</span>
+        {/* <img className="arrow" src="send-arrow.png"></img> */}
         <img className="logo-img title" src={props.receiverImageURL} alt="" />
         {props.receiverName}
       </div>
@@ -31,7 +33,11 @@ export const AppreciationCard = (props: Appreciation) => {
       title={generateCardTitle()}
       bordered={true}
       hoverable={false}
-      headStyle={{ backgroundColor: "var(--teal)", color: "#fff" }}
+      headStyle={{
+        background:
+          "linear-gradient(90deg, rgba(52,125,155,1) 0%, rgba(68,141,171,1) 100%)",
+        color: "#fff",
+      }}
       bodyStyle={{
         backgroundColor: "var(--card-background)",
         height: size,

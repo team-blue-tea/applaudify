@@ -18,7 +18,7 @@ const Form = (props: UserList) => {
   const [selectedGif, setSelectedGif] = useState("");
   const [appreciationSent, setAppreciationSent] = useState(false);
   const [open, setOpen] = useState(false);
-  const [imageId, setImageId] = useState("card-background-2.png");
+  const [imageId, setImageId] = useState("white.png");
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -101,14 +101,14 @@ const Form = (props: UserList) => {
               .filter((user: User) => user.name !== session?.user?.name)
               .map((user, index) => {
                 return (
-                  <option key={index} value={user.name}>
+                  <option className="option" key={index} value={user.name}>
                     {user.name}
                   </option>
                 );
               })}
           </select>
         </label>
-        <Collapsible
+        {/*         <Collapsible
           className="collapsible-button gallery"
           openedClassName="collapsible-button"
           trigger={"Select background image"}
@@ -120,7 +120,7 @@ const Form = (props: UserList) => {
             onClick={handleImageClick}
             additionalClass="image-gallery"
           />
-        </Collapsible>
+        </Collapsible> */}
         <div className="form-comment">
           <h5 className="form-comment__title">
             What do you appreciate about this person:
