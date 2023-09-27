@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import GifPicker, { TenorImage } from "gif-picker-react";
 import Collapsible from "react-collapsible";
 import ImageGallery from "react-image-gallery";
+import UserAvatar from "./UserAvatar";
 
 const Form = (props: UserList) => {
   const firstIndex: User = {
@@ -17,15 +18,17 @@ const Form = (props: UserList) => {
   const [selectedGif, setSelectedGif] = useState("");
   const [appreciationSent, setAppreciationSent] = useState(false);
   const [open, setOpen] = useState(false);
-  const [imageId, setImageId] = useState("card-background-2.png");
+  const [imageId, setImageId] = useState("white.png");
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
-  const generateAppreciation = async (e: any) => {
+  const generateAppreciation = async (e: any, receiverUrl: string) => {
     e.preventDefault();
     const appreciation = {
       senderName: session?.user?.name,
       receiverName: person,
+      senderImageURL: session?.user?.image,
+      receiverImageURL: receiverUrl,
       comment: comment,
       imageId: imageId,
       tenorUrl: selectedGif,
@@ -68,22 +71,29 @@ const Form = (props: UserList) => {
     setImageId(imageURL);
   };
 
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const receiver: User = userArray.find(
+      (user) => user.name === person
+    ) as User;
+    if (comment !== "" && person !== "Select:") {
+      generateAppreciation(e, receiver.imageURL!);
+    } else {
+      alertUser();
+    }
+  };
+
   return (
     <div className="form-container">
-      <form
-        onSubmit={
-          comment !== "" && person !== "Select:"
-            ? generateAppreciation
-            : alertUser
-        }
-        className="generate-appreciation__form"
-      >
+      <form onSubmit={handleSubmit} className="generate-appreciation__form">
         <label className="form-select">
           <h5 className="form-select__title">
             Select the person you want to appreciate:
           </h5>
           <select
-            onChange={(e) => setPerson(e.currentTarget.value)}
+            onChange={(e) => {
+              setPerson(e.currentTarget.value as string);
+            }}
             value={person}
             className="form-select__options"
           >
@@ -91,14 +101,14 @@ const Form = (props: UserList) => {
               .filter((user: User) => user.name !== session?.user?.name)
               .map((user, index) => {
                 return (
-                  <option key={index} value={user.name}>
+                  <option className="option" key={index} value={user.name}>
                     {user.name}
                   </option>
                 );
               })}
           </select>
         </label>
-        <Collapsible
+        {/*         <Collapsible
           className="collapsible-button gallery"
           openedClassName="collapsible-button"
           trigger={"Select background image"}
@@ -110,7 +120,7 @@ const Form = (props: UserList) => {
             onClick={handleImageClick}
             additionalClass="image-gallery"
           />
-        </Collapsible>
+        </Collapsible> */}
         <div className="form-comment">
           <h5 className="form-comment__title">
             What do you appreciate about this person:

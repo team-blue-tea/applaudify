@@ -9,11 +9,24 @@ public class Appreciation {
     private String id;
     private String senderName;
     private String receiverName;
+    private String senderImageURL;
+    private String receiverImageURL;
     private String comment;
     private String imageId;
     private String tenorUrl;
 
     public Appreciation() {
+    }
+
+    public Appreciation(String id, String senderName, String receiverName, String senderImageURL, String receiverImageURL, String comment, String imageId, String tenorUrl) {
+        this.id = id;
+        this.senderName = senderName;
+        this.receiverName = receiverName;
+        this.senderImageURL = senderImageURL;
+        this.receiverImageURL = receiverImageURL;
+        this.comment = comment;
+        this.imageId = imageId;
+        this.tenorUrl = tenorUrl;
     }
 
     public Appreciation(String id, String senderName, String receiverName, String comment, String imageId, String tenorUrl) {
@@ -29,6 +42,22 @@ public class Appreciation {
         this.senderName = senderName;
         this.receiverName = receiverName;
         this.comment = comment;
+    }
+
+    public String getSenderImageURL() {
+        return senderImageURL;
+    }
+
+    public void setSenderImageURL(String senderImageURL) {
+        this.senderImageURL = senderImageURL;
+    }
+
+    public String getReceiverImageURL() {
+        return receiverImageURL;
+    }
+
+    public void setReceiverImageURL(String receiverImageURL) {
+        this.receiverImageURL = receiverImageURL;
     }
 
     public String getImageId() {

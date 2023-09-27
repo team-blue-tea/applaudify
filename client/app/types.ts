@@ -1,6 +1,8 @@
 export type Appreciation = {
   senderName: string,
   receiverName: string,
+  senderImageURL: string,
+  receiverImageURL: string,
   comment: string,
   imageId: number,
   tenorUrl: string,
@@ -9,6 +11,7 @@ export type Appreciation = {
 export type User = {
   email?: string,
   name?: string,
+  imageURL?: string,
 }
 
 export type ImageUrl = {

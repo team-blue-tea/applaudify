@@ -9,6 +9,7 @@ public class User {
     private String id;
     private String email;
     private String name;
+    private String imageURL;
 
     public User() {
     }
@@ -17,9 +18,24 @@ public class User {
         this.email = email;
     }
 
+    public User(String id, String email, String name, String imageURL) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.imageURL = imageURL;
+    }
+
     public User(String email, String name) {
         this.email = email;
         this.name = name;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public String getId() {
