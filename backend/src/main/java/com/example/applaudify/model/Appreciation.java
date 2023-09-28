@@ -1,7 +1,11 @@
 package com.example.applaudify.model;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Document(collection = "appreciations")
 public class Appreciation {
@@ -14,11 +18,13 @@ public class Appreciation {
     private String comment;
     private String imageId;
     private String tenorUrl;
+    @CreatedDate
+    private Date createdAt;
 
     public Appreciation() {
     }
 
-    public Appreciation(String id, String senderName, String receiverName, String senderImageURL, String receiverImageURL, String comment, String imageId, String tenorUrl) {
+    public Appreciation(String id, String senderName, String receiverName, String senderImageURL, String receiverImageURL, String comment, String imageId, String tenorUrl, Date createdAt) {
         this.id = id;
         this.senderName = senderName;
         this.receiverName = receiverName;
@@ -27,7 +33,9 @@ public class Appreciation {
         this.comment = comment;
         this.imageId = imageId;
         this.tenorUrl = tenorUrl;
+        this.createdAt = createdAt;
     }
+
 
     public Appreciation(String id, String senderName, String receiverName, String comment, String imageId, String tenorUrl) {
         this.id = id;
@@ -99,4 +107,18 @@ public class Appreciation {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+
 }
