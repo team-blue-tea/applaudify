@@ -73,6 +73,7 @@ function page() {
                       comment={element.comment}
                       imageId={0}
                       tenorUrl={element.tenorUrl}
+                      createdAt={element.createdAt}
                     />
                   </li>
                 ))}
