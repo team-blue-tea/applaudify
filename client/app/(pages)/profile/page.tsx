@@ -5,6 +5,7 @@ import { AppreciationCard } from "@/components/AppreciationCard";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import { Switch } from "antd";
 
 function page() {
   const { data: session, status } = useSession({
@@ -24,6 +25,10 @@ function page() {
     const jsonData = await response.json();
     setData(jsonData);
   };
+
+  const toggleFilter = (showing: boolean) => {
+    showing ? setShowingSent(false) : setShowingSent(true);
+  }
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -48,12 +53,15 @@ function page() {
           </div>
         ) : (
           <div className="main-content">
-            <h2>Your {!showingSent ? "Received" : "Sent"} Appreciations:</h2>
+            <div className="toggle-container">
+              <h2 className="toggle-text">Your appreciations:</h2>
+              <Switch defaultChecked checkedChildren="Received" unCheckedChildren="Sent" onChange={() => toggleFilter(showingSent)} />
+            </div>
             <ul className="feed-appreciation-list">
               {data
                 .filter(
                   (element: Appreciation) =>
-                    element.receiverName === session?.user?.name
+                    showingSent ? element.senderName === session?.user?.name : element.receiverName === session?.user?.name
                 )
                 .map((element: Appreciation, index) => (
                   <li key={index}>
