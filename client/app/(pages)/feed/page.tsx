@@ -80,8 +80,9 @@ function Home() {
                   senderImageURL={element.senderImageURL}
                   receiverImageURL={element.receiverImageURL}
                   comment={element.comment}
-                  imageId={/* randomIntFromInterval(2, 5) */ 0}
+                  imageId={0}
                   tenorUrl={element.tenorUrl}
+                  createdAt={element.createdAt}
                 />
               </li>
             ))}

@@ -6,6 +6,7 @@ export type Appreciation = {
   comment: string,
   imageId: number,
   tenorUrl: string,
+  createdAt?: string,
 }
 
 export type User = {

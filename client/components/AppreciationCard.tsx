@@ -14,13 +14,16 @@ export const AppreciationCard = (props: Appreciation) => {
     size = "200px";
   }
 
+  const date = new Date(props.createdAt as string);
+  const formattedDate = `${date.getDate()} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.getFullYear()}`;
+  const formattedTime = `${date.toLocaleTimeString('sv-SE', { hour: 'numeric', minute: 'numeric', second: undefined })}`;
+
   const generateCardTitle = () => {
     return (
       <div className="title-container">
         <img className="logo-img title" src={props.senderImageURL} alt="" />
         {props.senderName}
         <span className="arrow">➞</span>
-        {/* <img className="arrow" src="send-arrow.png"></img> */}
         <img className="logo-img title" src={props.receiverImageURL} alt="" />
         {props.receiverName}
       </div>
@@ -55,6 +58,7 @@ export const AppreciationCard = (props: Appreciation) => {
         <div className="text-and-gif">
           <div className="comment-container">
             <p className="card-comment">{props.comment}</p>
+            <p className="card-timestamp">{formattedDate + " " + formattedTime}</p>
           </div>
           <img className="gif-image" src={props.tenorUrl} />
         </div>
