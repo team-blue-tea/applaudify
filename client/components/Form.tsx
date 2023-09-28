@@ -1,5 +1,6 @@
 import { User, UserList } from "@/app/types";
 import { useSession } from "next-auth/react";
+import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from "react";
 import GifPicker, { TenorImage } from "gif-picker-react";
 import Collapsible from "react-collapsible";
