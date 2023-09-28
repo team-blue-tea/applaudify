@@ -383,8 +383,8 @@ main {
 }
 
 .profile {
-   width: 150px;
-   height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .title-container {
@@ -411,4 +411,24 @@ main {
 .option-text {
   overflow: hidden;
   font-size: 3em;
+}
+
+.toggle {
+  height: 50px;
+}
+
+.toggle-text {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 4px;
+  color: var(--lightOrange);
+}
+
+.toggle-container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
 }
