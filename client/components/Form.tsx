@@ -83,9 +83,15 @@ const Form = (props: UserList) => {
     }
   };
 
+  const handleReset = () => {
+    setComment("");
+    setSelectedGif("");
+    setPerson("");
+  }
+
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit} className="generate-appreciation__form">
+      <form onSubmit={handleSubmit} onReset={handleReset} className="generate-appreciation__form">
         <label className="form-select">
           <h5 className="form-select__title">
             Select the person you want to appreciate:
@@ -162,7 +168,10 @@ const Form = (props: UserList) => {
               </div>
             </Collapsible>
           </div>
-          <input type="submit" value="Send 👏" className="form-submit" />
+          <div className="form-buttons">
+            <input type="reset" value="Clear ❌" className="form-submit" />
+            <input type="submit" value="Send 👏" className="form-submit" />
+          </div>
         </div>
       </form>
       {appreciationSent === true ? (

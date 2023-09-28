@@ -96,7 +96,6 @@ main {
   height: 157px;
   width: 432px;
   margin-bottom: 10px;
-
   background-position: bottom;
   font-family: var(--main-font);
   animation: 1s ease-out 0s 1 fadeIn;
@@ -195,8 +194,6 @@ main {
 
 .form-submit {
   width: min-content;
-  align-self: flex-start;
-  justify-self: flex-end;
   padding: 4px 8px;
   font-size: 0.8em;
   background-color: var(--darkBlue);
@@ -213,6 +210,13 @@ main {
   background-color: var(--blue);
   padding: 20px;
   border-radius: 4px;
+}
+
+.form-buttons {
+  align-self: flex-start;
+  justify-self: flex-end;
+  display: flex;
+  gap: 10px;
 }
 
 .form-select__title {
@@ -325,8 +329,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: visibility 0s 2s, opacity 2s linear;
-
+  animation: 1s ease-out 0s 1 fadeIn;
 }
 
 .contact-title {
