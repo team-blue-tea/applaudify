@@ -11,12 +11,18 @@ export const AppreciationCard = (props: Appreciation) => {
   let size = "100px";
   if (props.tenorUrl) {
     hasGif = "with-gif";
-    size = "200px";
+    size = "max-content";
   }
 
   const date = new Date(props.createdAt as string);
-  const formattedDate = `${date.getDate()} ${date.toLocaleDateString('en-US', { month: 'short' })} ${date.getFullYear()}`;
-  const formattedTime = `${date.toLocaleTimeString('sv-SE', { hour: 'numeric', minute: 'numeric', second: undefined })}`;
+  const formattedDate = `${date.getDate()} ${date.toLocaleDateString("en-US", {
+    month: "short",
+  })} ${date.getFullYear()}`;
+  const formattedTime = `${date.toLocaleTimeString("sv-SE", {
+    hour: "numeric",
+    minute: "numeric",
+    second: undefined,
+  })}`;
 
   const generateCardTitle = () => {
     return (
@@ -48,7 +54,6 @@ export const AppreciationCard = (props: Appreciation) => {
         fontFamily: "var(--main-font)",
       }}
       style={{
-        backgroundImage: 'url("/card-background-' + props.imageId + '.png")',
         cursor: "default",
       }}
     >
@@ -58,7 +63,9 @@ export const AppreciationCard = (props: Appreciation) => {
         <div className="text-and-gif">
           <div className="comment-container">
             <p className="card-comment">{props.comment}</p>
-            <p className="card-timestamp">{formattedDate + " " + formattedTime}</p>
+            <p className="card-timestamp">
+              {formattedDate + " " + formattedTime}
+            </p>
           </div>
           <img className="gif-image" src={props.tenorUrl} />
         </div>

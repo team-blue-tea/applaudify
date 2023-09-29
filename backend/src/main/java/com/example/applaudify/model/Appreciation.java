@@ -46,12 +46,6 @@ public class Appreciation {
         this.tenorUrl = tenorUrl;
     }
 
-    public Appreciation(String senderName, String receiverName, String comment) {
-        this.senderName = senderName;
-        this.receiverName = receiverName;
-        this.comment = comment;
-    }
-
     public String getSenderImageURL() {
         return senderImageURL;
     }

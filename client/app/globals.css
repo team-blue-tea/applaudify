@@ -93,7 +93,7 @@ main {
 }
 
 .appreciation-card {
-  height: 157px;
+  height: min-content;
   width: 432px;
   margin-bottom: 10px;
   background-position: bottom;
@@ -307,7 +307,7 @@ main {
 }
 
 .with-gif {
-  height: 257px;
+  max-height: 257px;
 }
 
 .git-icon {
