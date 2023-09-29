@@ -41,7 +41,7 @@ export default function PagesLayout({
     } else if (url.includes("/profile")) {
       setCurrentTabLeft("/profile");
     } else if (url.includes("/contact")) {
-      setCurrentTabLeft("");
+      setCurrentTabLeft("/contact");
     }
   }, [pathname]);
 
@@ -75,7 +75,6 @@ export default function PagesLayout({
                   paddingTop: 45,
                 }}
               >
-                <div className="demo-logo-vertical" />
                 <Menu
                   theme="dark"
                   mode="inline"
@@ -116,6 +115,16 @@ export default function PagesLayout({
                         </Link>
                       ),
                       label: "Profile",
+                    },
+                    {
+                      key: "/contact",
+                      icon: (
+                        <Link href="/contact">
+                          <QuestionCircleOutlined />
+                        </Link>
+                      ),
+                      label: "About Us",
+                      style: { marginTop: "auto" },
                     },
                   ]}
                 />
@@ -175,18 +184,19 @@ export default function PagesLayout({
                   style={{
                     width: "140px",
                   }}
-                  items={[
-                    /*                   {
+                  items={
+                    [
+                      /*                   {
                       key: "1",
                       icon: <CopyrightOutlined />,
                       label: "SALT",
                     }, */
-                    /*                 {
+                      /*                 {
                   key: "2",
                   icon: <SettingOutlined />,
                   label: "Settings",
                 }, */
-                    {
+                      /*                    {
                       key: "/contact",
                       icon: (
                         <Link href="/contact">
@@ -194,8 +204,9 @@ export default function PagesLayout({
                         </Link>
                       ),
                       label: "About Us",
-                    },
-                  ]}
+                    }, */
+                    ]
+                  }
                 />
               </Sider>
             </Layout>

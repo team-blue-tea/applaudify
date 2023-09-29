@@ -28,7 +28,7 @@ function page() {
 
   const toggleFilter = (showing: boolean) => {
     showing ? setShowingSent(false) : setShowingSent(true);
-  }
+  };
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -55,13 +55,20 @@ function page() {
           <div className="main-content">
             <div className="toggle-container">
               <h2 className="toggle-text">Your appreciations:</h2>
-              <Switch defaultChecked checkedChildren="Received" unCheckedChildren="Sent" onChange={() => toggleFilter(showingSent)} />
+              <Switch
+                className="toggle-button"
+                defaultChecked
+                checkedChildren="Received"
+                unCheckedChildren="Sent"
+                onChange={() => toggleFilter(showingSent)}
+              />
             </div>
             <ul className="feed-appreciation-list">
               {data
-                .filter(
-                  (element: Appreciation) =>
-                    showingSent ? element.senderName === session?.user?.name : element.receiverName === session?.user?.name
+                .filter((element: Appreciation) =>
+                  showingSent
+                    ? element.senderName === session?.user?.name
+                    : element.receiverName === session?.user?.name
                 )
                 .map((element: Appreciation, index) => (
                   <li key={index}>
