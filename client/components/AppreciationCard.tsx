@@ -50,7 +50,7 @@ export const AppreciationCard = (props: Appreciation) => {
       bodyStyle={{
         backgroundColor: "var(--card-background)",
         height: size,
-        paddingTop: 0,
+        padding: "0 25px 20px 25px",
         fontFamily: "var(--main-font)",
       }}
       style={{
