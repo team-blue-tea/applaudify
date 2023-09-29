@@ -475,5 +475,11 @@ main {
 .emoji-container {
   width: 100%;
   max-width: 470px;
+  max-height: 400px;
+}
+
+.react-emoji-picker--wrapper {
+  max-height: 330px;
+  border-radius: 8px;
 }
 

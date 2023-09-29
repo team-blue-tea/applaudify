@@ -47,25 +47,6 @@ const Form = (props: UserList) => {
     alert("You need to select a person and write an appreciation first!");
   };
 
-  const images = [
-    {
-      original: "card-background-2.png",
-      thumbnail: "card-background-2.png",
-    },
-    {
-      original: "card-background-3.png",
-      thumbnail: "card-background-3.png",
-    },
-    {
-      original: "card-background-4.png",
-      thumbnail: "card-background-4.png",
-    },
-    {
-      original: "card-background-5.png",
-      thumbnail: "card-background-5.png",
-    },
-  ];
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const receiver: User = userArray.find(
@@ -83,8 +64,6 @@ const Form = (props: UserList) => {
     setSelectedGif("");
     setPerson("");
   };
-
-  const handleEmoji = () => {};
 
   return (
     <div className="form-container">
@@ -125,6 +104,7 @@ const Form = (props: UserList) => {
               placeholder="Write your appreciation here"
               onChange={setComment}
               maxLength={120}
+              borderRadius={4}
             />
           </div>
         </div>
