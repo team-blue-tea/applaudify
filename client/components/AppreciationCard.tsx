@@ -8,7 +8,7 @@ export const AppreciationCard = (props: Appreciation) => {
   };
 
   let hasGif = "";
-  let size = "100px";
+  let size = "120px";
   if (props.tenorUrl) {
     hasGif = "with-gif";
     size = "max-content";
@@ -58,7 +58,12 @@ export const AppreciationCard = (props: Appreciation) => {
       }}
     >
       {!props.tenorUrl ? (
-        <p>{props.comment}</p>
+        <div className="comment-container without-gif">
+          <p className="card-comment comment-without-gif">{props.comment}</p>
+          <p className="card-timestamp">
+            {formattedDate + " " + formattedTime}
+          </p>
+        </div>
       ) : (
         <div className="text-and-gif">
           <div className="comment-container">
