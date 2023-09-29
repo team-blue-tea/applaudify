@@ -1,11 +1,9 @@
 import { User, UserList } from "@/app/types";
 import { useSession } from "next-auth/react";
-import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from "react";
 import GifPicker, { TenorImage } from "gif-picker-react";
 import Collapsible from "react-collapsible";
-import ImageGallery from "react-image-gallery";
-import UserAvatar from "./UserAvatar";
+import InputEmoji from "react-input-emoji";
 
 const Form = (props: UserList) => {
   const firstIndex: User = {
@@ -20,6 +18,7 @@ const Form = (props: UserList) => {
   const [appreciationSent, setAppreciationSent] = useState(false);
   const [open, setOpen] = useState(false);
   const [imageId, setImageId] = useState("white.png");
+  const [text, setText] = useState("");
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -67,11 +66,6 @@ const Form = (props: UserList) => {
     },
   ];
 
-  const handleImageClick = (e: any) => {
-    const imageURL = e.target.src;
-    setImageId(imageURL);
-  };
-
   const handleSubmit = (e: any) => {
     e.preventDefault();
     const receiver: User = userArray.find(
@@ -88,11 +82,17 @@ const Form = (props: UserList) => {
     setComment("");
     setSelectedGif("");
     setPerson("");
-  }
+  };
+
+  const handleEmoji = () => {};
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit} onReset={handleReset} className="generate-appreciation__form">
+      <form
+        onSubmit={handleSubmit}
+        onReset={handleReset}
+        className="generate-appreciation__form"
+      >
         <label className="form-select">
           <h5 className="form-select__title">
             Select the person you want to appreciate:
@@ -115,36 +115,18 @@ const Form = (props: UserList) => {
               })}
           </select>
         </label>
-        {/*         <Collapsible
-          className="collapsible-button gallery"
-          openedClassName="collapsible-button"
-          trigger={"Select background image"}
-        >
-          <ImageGallery
-            items={images}
-            showFullscreenButton={false}
-            showPlayButton={false}
-            onClick={handleImageClick}
-            additionalClass="image-gallery"
-          />
-        </Collapsible> */}
         <div className="form-comment">
           <h5 className="form-comment__title">
             What do you appreciate about this person:
           </h5>
-          <label className="form-comment__label">
-            <textarea
+          <div className="emoji-container">
+            <InputEmoji
               value={comment}
               placeholder="Write your appreciation here"
-              onChange={(e) => setComment(e.currentTarget.value)}
-              className="form-comment__textarea"
+              onChange={setComment}
               maxLength={120}
-              style={{
-                background: `url(${imageId})`,
-                maxHeight: 300,
-              }}
             />
-          </label>
+          </div>
         </div>
         <div className="gif-container">
           <div className="gif-list">

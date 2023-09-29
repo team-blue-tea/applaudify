@@ -168,15 +168,18 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 20px 20px 28px 20px;
   margin-top: 24px;
   border-radius: 4px;
+  max-width: 100%;
 }
 
 .form-comment__title {
   margin: 0 0 20px 0;
   font-size: 0.9rem;
   color: wheat;
+  align-self: flex-start;
 }
 
 .form-comment__textarea {
@@ -262,6 +265,10 @@ main {
   font-family: var(--main-font);
 }
 
+.gif-list {
+  display: flex;
+}
+
 .gif-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -269,6 +276,7 @@ main {
 }
 
 .collapsible-button {
+  width: 210px;
   color: var(--yellow);
   font-family: var(--main-font);
   font-size: 0.8em;
@@ -462,5 +470,10 @@ main {
 
 .toggle-button {
   scale: 1.1;
+}
+
+.emoji-container {
+  width: 100%;
+  max-width: 470px;
 }
 
