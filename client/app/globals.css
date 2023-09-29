@@ -354,6 +354,7 @@ main {
   margin: 0;
   background-color: var(--darkBlue);
   color: var(--lightOrange);
+  border-radius: 4px;
 }
 
 .contact-role {

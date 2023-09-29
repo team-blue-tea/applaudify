@@ -12,9 +12,10 @@ import {
   CopyrightOutlined,
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const { Header, Sider, Content } = Layout;
 
@@ -28,6 +29,21 @@ export default function PagesLayout({
     token: { colorBgContainer },
   } = theme.useToken();
   const { data: session, status } = useSession();
+  const pathname = usePathname();
+  const [currentTabLeft, setCurrentTabLeft] = useState<string>(pathname);
+
+  useEffect(() => {
+    const url = pathname;
+    if (url.includes("/feed")) {
+      setCurrentTabLeft("/feed");
+    } else if (url.includes("/appreciation")) {
+      setCurrentTabLeft("/appreciation");
+    } else if (url.includes("/profile")) {
+      setCurrentTabLeft("/profile");
+    } else if (url.includes("/contact")) {
+      setCurrentTabLeft("");
+    }
+  }, [pathname]);
 
   return (
     <>
@@ -63,13 +79,14 @@ export default function PagesLayout({
                 <Menu
                   theme="dark"
                   mode="inline"
-                  defaultSelectedKeys={["1"]}
+                  selectable={true}
+                  defaultSelectedKeys={[currentTabLeft]}
                   style={{
                     width: "160px",
                   }}
                   items={[
                     {
-                      key: "1",
+                      key: "/feed",
                       icon: (
                         <Link href="/feed">
                           <BookOutlined />
@@ -78,7 +95,7 @@ export default function PagesLayout({
                       label: "Feed",
                     },
                     {
-                      key: "2",
+                      key: "/appreciate",
                       icon: (
                         <Link href="/appreciate">
                           <SafetyCertificateOutlined />
@@ -92,7 +109,7 @@ export default function PagesLayout({
                   label: "Badge",
                 }, */
                     {
-                      key: "4",
+                      key: "/profile",
                       icon: (
                         <Link href="/profile">
                           <UserOutlined />
@@ -153,7 +170,8 @@ export default function PagesLayout({
                 <Menu
                   theme="dark"
                   mode="inline"
-                  defaultSelectedKeys={["0"]}
+                  selectable={false}
+                  defaultSelectedKeys={[currentTabLeft]}
                   style={{
                     width: "140px",
                   }}
@@ -169,7 +187,7 @@ export default function PagesLayout({
                   label: "Settings",
                 }, */
                     {
-                      key: "3",
+                      key: "/contact",
                       icon: (
                         <Link href="/contact">
                           <QuestionCircleOutlined />
