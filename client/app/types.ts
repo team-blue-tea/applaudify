@@ -1,6 +1,8 @@
 export type Appreciation = {
   senderName: string,
+  senderId: string,
   receiverName: string,
+  receiverId: string,
   senderImageURL: string,
   receiverImageURL: string,
   comment: string,
@@ -10,6 +12,7 @@ export type Appreciation = {
 }
 
 export type User = {
+  id?: string,
   email?: string,
   name?: string,
   imageURL?: string,

@@ -12,7 +12,9 @@ public class Appreciation {
     @Id
     private String id;
     private String senderName;
+    private String senderId;
     private String receiverName;
+    private String receiverId;
     private String senderImageURL;
     private String receiverImageURL;
     private String comment;
@@ -24,10 +26,12 @@ public class Appreciation {
     public Appreciation() {
     }
 
-    public Appreciation(String id, String senderName, String receiverName, String senderImageURL, String receiverImageURL, String comment, String imageId, String tenorUrl, Date createdAt) {
+    public Appreciation(String id, String senderName, String senderId, String receiverName, String receiverId, String senderImageURL, String receiverImageURL, String comment, String imageId, String tenorUrl, Date createdAt) {
         this.id = id;
         this.senderName = senderName;
+        this.senderId = senderId;
         this.receiverName = receiverName;
+        this.receiverId = receiverId;
         this.senderImageURL = senderImageURL;
         this.receiverImageURL = receiverImageURL;
         this.comment = comment;
@@ -36,7 +40,6 @@ public class Appreciation {
         this.createdAt = createdAt;
     }
 
-
     public Appreciation(String id, String senderName, String receiverName, String comment, String imageId, String tenorUrl) {
         this.id = id;
         this.senderName = senderName;
@@ -44,6 +47,22 @@ public class Appreciation {
         this.comment = comment;
         this.imageId = imageId;
         this.tenorUrl = tenorUrl;
+    }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
+    public String getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(String receiverId) {
+        this.receiverId = receiverId;
     }
 
     public String getSenderImageURL() {

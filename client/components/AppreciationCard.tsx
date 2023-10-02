@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 import { Appreciation } from "../app/types";
+import Link from "next/link";
 
 export const AppreciationCard = (props: Appreciation) => {
   const image = () => {
@@ -28,10 +29,20 @@ export const AppreciationCard = (props: Appreciation) => {
     return (
       <div className="title-container">
         <img className="logo-img title" src={props.senderImageURL} alt="" />
-        {props.senderName}
+        <Link
+          className="title-profile-url"
+          href={`/viewProfile/${props.senderId}`}
+        >
+          {props.senderName}
+        </Link>
         <span className="arrow">➞</span>
         <img className="logo-img title" src={props.receiverImageURL} alt="" />
-        {props.receiverName}
+        <Link
+          className="title-profile-url"
+          href={`/viewProfile/${props.receiverId}`}
+        >
+          {props.receiverName}
+        </Link>
       </div>
     );
   };
@@ -40,11 +51,11 @@ export const AppreciationCard = (props: Appreciation) => {
     <Card
       className={`appreciation-card ${hasGif}`}
       title={generateCardTitle()}
-      bordered={true}
+      bordered={false}
       hoverable={false}
       headStyle={{
         background:
-          "linear-gradient(90deg, rgba(52,125,155,1) 0%, rgba(68,141,171,1) 100%)",
+          "linear-gradient(90deg, rgba(52,125,205,1) 0%, var(--teal) 100%)",
         color: "#fff",
       }}
       bodyStyle={{

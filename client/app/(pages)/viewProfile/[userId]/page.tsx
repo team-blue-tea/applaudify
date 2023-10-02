@@ -1,20 +1,16 @@
 "use client";
 
-import { Appreciation } from "@/app/types";
+import backendUrl from "@/app/backendURL";
+import { Appreciation, User } from "@/app/types";
 import { AppreciationCard } from "@/components/AppreciationCard";
+import { Switch } from "antd";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Switch } from "antd";
-import backendUrl from "@/app/backendURL";
+import { URL } from "whatwg-url";
 
 function page() {
-  const { data: session, status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      redirect("api/auth/signin?callbackUrl=/home");
-    },
-  });
+  const [user, setUser] = useState<User>({});
 
   const [showingSent, setShowingSent] = useState(false);
   const [data, setData] = useState([]);
@@ -30,20 +26,29 @@ function page() {
   };
 
   useEffect(() => {
-    if (status === "authenticated") {
-      getAppreciation();
-    }
-  }, [status]);
+    getUser(window.location.href);
+    getAppreciation();
+  }, []);
+
+  const getUser = async (urlString: string) => {
+    const urlObject = new URL(urlString);
+    const pathname = urlObject.pathname;
+    const parts = pathname.split("/");
+    const userId = parts[parts.length - 1];
+    const response = await fetch(backendUrl + "/users/" + userId);
+    const jsonData = await response.json();
+    setUser(jsonData);
+  };
 
   return (
     <>
       <div className="profile-container">
         <img
           className="logo-img profile"
-          src={session?.user?.image as string}
+          src={user.imageURL as string}
           alt="Profile image"
         />
-        <p className="profile-container__name">Name: {session?.user?.name}</p>
+        <p className="profile-container__name">Name: {user.name}</p>
       </div>
       <div className="">
         {status === "loading" ? (
@@ -53,7 +58,7 @@ function page() {
         ) : (
           <div className="main-content">
             <div className="toggle-container">
-              <h2 className="toggle-text">Your appreciations:</h2>
+              <h2 className="toggle-text">Appreciations:</h2>
               <Switch
                 className="toggle-button"
                 defaultChecked
@@ -66,8 +71,8 @@ function page() {
               {data
                 .filter((element: Appreciation) =>
                   showingSent
-                    ? element.senderName === session?.user?.name
-                    : element.receiverName === session?.user?.name
+                    ? element.senderName === user.name
+                    : element.receiverName === user.name
                 )
                 .map((element: Appreciation, index) => (
                   <li key={index}>
