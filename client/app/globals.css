@@ -494,3 +494,11 @@ main {
 .comment-without-gif {
   padding: 10px 0;
 }
+
+.title-profile-url {
+  color: white;
+}
+
+.title-profile-url:hover {
+  color: var(--lightOrange);
+}

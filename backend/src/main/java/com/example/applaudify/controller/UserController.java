@@ -6,8 +6,10 @@ import com.example.applaudify.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -27,6 +29,12 @@ public class UserController {
     public ResponseEntity<List<User>> getUsers() {
         List<User> userList = userService.getUsers();
         return ResponseEntity.ok(userList);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<User> getUserById(@PathVariable String userId) {
+        User user = userService.findUserById(userId);
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/add")

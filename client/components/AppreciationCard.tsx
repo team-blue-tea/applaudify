@@ -1,6 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 import { Appreciation } from "../app/types";
+import Link from "next/link";
 
 export const AppreciationCard = (props: Appreciation) => {
   const image = () => {
@@ -28,10 +29,20 @@ export const AppreciationCard = (props: Appreciation) => {
     return (
       <div className="title-container">
         <img className="logo-img title" src={props.senderImageURL} alt="" />
-        {props.senderName}
+        <Link
+          className="title-profile-url"
+          href={`/viewProfile/${props.senderId}`}
+        >
+          {props.senderName}
+        </Link>
         <span className="arrow">➞</span>
         <img className="logo-img title" src={props.receiverImageURL} alt="" />
-        {props.receiverName}
+        <Link
+          className="title-profile-url"
+          href={`/viewProfile/${props.receiverId}`}
+        >
+          {props.receiverName}
+        </Link>
       </div>
     );
   };
@@ -60,7 +71,6 @@ export const AppreciationCard = (props: Appreciation) => {
       {!props.tenorUrl ? (
         <div className="comment-container without-gif">
           <p className="card-comment comment-without-gif">{props.comment}</p>
-          {props.senderId + " " + props.receiverId}
           <p className="card-timestamp">
             {formattedDate + " " + formattedTime}
           </p>
@@ -68,7 +78,6 @@ export const AppreciationCard = (props: Appreciation) => {
       ) : (
         <div className="text-and-gif">
           <div className="comment-container">
-            {props.senderId + " " + props.receiverId}
             <p className="card-comment">{props.comment}</p>
             <p className="card-timestamp">
               {formattedDate + " " + formattedTime}

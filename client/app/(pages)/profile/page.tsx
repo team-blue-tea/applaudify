@@ -74,7 +74,9 @@ function page() {
                   <li key={index}>
                     <AppreciationCard
                       senderName={element.senderName}
+                      senderId={element.senderId}
                       receiverName={element.receiverName}
+                      receiverId={element.receiverId}
                       senderImageURL={element.senderImageURL}
                       receiverImageURL={element.receiverImageURL}
                       comment={element.comment}
