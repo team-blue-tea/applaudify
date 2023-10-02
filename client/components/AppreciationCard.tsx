@@ -60,6 +60,7 @@ export const AppreciationCard = (props: Appreciation) => {
       {!props.tenorUrl ? (
         <div className="comment-container without-gif">
           <p className="card-comment comment-without-gif">{props.comment}</p>
+          {props.senderId + " " + props.receiverId}
           <p className="card-timestamp">
             {formattedDate + " " + formattedTime}
           </p>
@@ -67,6 +68,7 @@ export const AppreciationCard = (props: Appreciation) => {
       ) : (
         <div className="text-and-gif">
           <div className="comment-container">
+            {props.senderId + " " + props.receiverId}
             <p className="card-comment">{props.comment}</p>
             <p className="card-timestamp">
               {formattedDate + " " + formattedTime}

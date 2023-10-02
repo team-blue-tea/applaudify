@@ -13,6 +13,7 @@ function Appreciate() {
   const getUsers = async () => {
     const response = await fetch(backendUrl + "/users");
     const jsonData = await response.json();
+    console.log(jsonData);
     setUsers(jsonData);
   };
 

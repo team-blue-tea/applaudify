@@ -1,4 +1,4 @@
-import { User, UserList } from "@/app/types";
+import { Appreciation, User, UserList } from "@/app/types";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useRef, useState } from "react";
 import GifPicker, { TenorImage } from "gif-picker-react";
@@ -22,11 +22,18 @@ const Form = (props: UserList) => {
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
-  const generateAppreciation = async (e: any, receiverUrl: string) => {
+  const generateAppreciation = async (
+    e: any,
+    receiverUrl: string,
+    senderId: string,
+    receiverId: string
+  ) => {
     e.preventDefault();
     const appreciation = {
       senderName: session?.user?.name,
+      senderId: senderId,
       receiverName: person,
+      receiverId: receiverId,
       senderImageURL: session?.user?.image,
       receiverImageURL: receiverUrl,
       comment: comment,
@@ -49,11 +56,19 @@ const Form = (props: UserList) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    const sender: User = userArray.find(
+      (user) => user.name === session?.user?.name
+    ) as User;
     const receiver: User = userArray.find(
       (user) => user.name === person
     ) as User;
     if (comment !== "" && person !== "Select:") {
-      generateAppreciation(e, receiver.imageURL!);
+      generateAppreciation(
+        e,
+        receiver.imageURL as string,
+        sender.id as string,
+        receiver.id as string
+      );
     } else {
       alertUser();
     }
