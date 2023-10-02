@@ -6,6 +6,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Switch } from "antd";
+import backendUrl from "@/app/backendURL";
 
 function page() {
   const { data: session, status } = useSession({
@@ -14,8 +15,6 @@ function page() {
       redirect("api/auth/signin?callbackUrl=/home");
     },
   });
-
-  const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
   const [showingSent, setShowingSent] = useState(false);
   const [data, setData] = useState([]);

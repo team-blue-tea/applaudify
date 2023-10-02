@@ -51,11 +51,11 @@ export const AppreciationCard = (props: Appreciation) => {
     <Card
       className={`appreciation-card ${hasGif}`}
       title={generateCardTitle()}
-      bordered={true}
+      bordered={false}
       hoverable={false}
       headStyle={{
         background:
-          "linear-gradient(90deg, rgba(52,125,155,1) 0%, rgba(68,141,171,1) 100%)",
+          "linear-gradient(90deg, rgba(52,125,205,1) 0%, var(--teal) 100%)",
         color: "#fff",
       }}
       bodyStyle={{

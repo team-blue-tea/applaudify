@@ -5,6 +5,7 @@ import { Appreciation, User } from "../../types";
 import { AppreciationCard } from "@/components/AppreciationCard";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import backendUrl from "@/app/backendURL";
 
 function Home() {
   const { data: session, status } = useSession({
@@ -13,8 +14,6 @@ function Home() {
       redirect("api/auth/signin?callbackUrl=/home");
     },
   });
-
-  const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
   const user: User = {
     email: session?.user?.email as string,
