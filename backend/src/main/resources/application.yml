@@ -2,7 +2,7 @@ spring:
   data:
     mongodb:
       uri: ${MONGO_CONNECTION_STRING}
-      database: applaudify
+      database: applaudify-development
 server:
   address: 0.0.0.0
   port: 8080
