@@ -29,8 +29,8 @@ public class AppreciationController {
 
     @PostMapping("/add")
     @ResponseBody
-    public ResponseEntity<Appreciation> addAppreciation(@RequestBody Appreciation appreciation) {
-        Appreciation newAppreciation = appreciationService.addAppreciation(appreciation);
+    public ResponseEntity<Appreciation> addAppreciation(@RequestBody Appreciation.AppreciationBuilder builder) {
+        Appreciation newAppreciation = appreciationService.addAppreciation(builder);
         System.out.println(newAppreciation.toString());
         return ResponseEntity.ok(newAppreciation);
     }

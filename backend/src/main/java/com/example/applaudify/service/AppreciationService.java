@@ -17,8 +17,8 @@ public class AppreciationService {
         this.appreciationRepository = appreciationRepository;
     }
 
-    public Appreciation addAppreciation(Appreciation appreciation) {
-        Appreciation newAppreciation = Appreciation.AppreciationBuilder
+    public Appreciation addAppreciation(Appreciation.AppreciationBuilder builder) {
+        Appreciation appreciation = builder.build();
         return appreciationRepository.save(appreciation);
     }
 
