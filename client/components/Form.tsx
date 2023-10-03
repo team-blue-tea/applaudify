@@ -19,6 +19,7 @@ const Form = (props: UserList) => {
   const [open, setOpen] = useState(false);
   const [imageId, setImageId] = useState("white.png");
   const [text, setText] = useState("");
+  const [gifSent, setGifSent] = useState('');
 
   const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
@@ -69,6 +70,10 @@ const Form = (props: UserList) => {
         sender.id as string,
         receiver.id as string
       );
+      handleReset();
+      setTimeout(() => {
+        setAppreciationSent(false);
+      }, 3000);
     } else {
       alertUser();
     }
@@ -141,10 +146,17 @@ const Form = (props: UserList) => {
                     setSelectedGif(gif.url);
                     event?.preventDefault();
                     setOpen(false);
+                    setGifSent('GIF added!')
+                    setTimeout(() => {
+                      setGifSent('');
+                    }, 2000);
                   }}
                 />
               </div>
             </Collapsible>
+            {gifSent && (
+              <p className="gif-confirmation-text">{gifSent}</p>
+            )}
           </div>
           <div className="form-buttons">
             <input type="reset" value="Clear ❌" className="form-submit" />
