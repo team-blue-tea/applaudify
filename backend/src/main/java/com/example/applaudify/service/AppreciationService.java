@@ -18,6 +18,7 @@ public class AppreciationService {
     }
 
     public Appreciation addAppreciation(Appreciation appreciation) {
+        Appreciation newAppreciation = Appreciation.AppreciationBuilder
         return appreciationRepository.save(appreciation);
     }
 

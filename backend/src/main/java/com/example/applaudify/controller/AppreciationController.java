@@ -28,8 +28,10 @@ public class AppreciationController {
     }
 
     @PostMapping("/add")
+    @ResponseBody
     public ResponseEntity<Appreciation> addAppreciation(@RequestBody Appreciation appreciation) {
         Appreciation newAppreciation = appreciationService.addAppreciation(appreciation);
-        return new ResponseEntity<>(newAppreciation, HttpStatus.CREATED);
+        System.out.println(newAppreciation.toString());
+        return ResponseEntity.ok(newAppreciation);
     }
 }
