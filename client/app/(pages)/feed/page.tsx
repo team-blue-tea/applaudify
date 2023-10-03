@@ -23,10 +23,11 @@ function Home() {
 
   const [data, setData] = useState([]);
 
+
   const getAppreciation = async () => {
     const response = await fetch(backendUrl + "/appreciations");
     const jsonData = await response.json();
-    setData(jsonData);
+    setData(jsonData.toReversed());
   };
 
   const addUserToDb = async () => {
