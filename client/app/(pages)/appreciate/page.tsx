@@ -1,14 +1,11 @@
 "use client";
 
 import Form from "@/components/Form";
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import backendUrl from "@/app/backendURL";
 
 function Appreciate() {
   const [users, setUsers] = useState([]);
-  const { data: session, status } = useSession();
-
-  const backendUrl: string = process.env.NEXT_PUBLIC_BACKEND_URL as string;
 
   const getUsers = async () => {
     const response = await fetch(backendUrl + "/users");

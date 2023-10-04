@@ -427,7 +427,7 @@ main {
 .title {
   height: 30px;
   width: 30px;
-  border-radius: 10px;
+  border-radius: 50%;
 }
 
 .arrow {
@@ -517,4 +517,21 @@ main {
   color: var(--darkOrange);
   width: 150px;
   margin-left: 10px;
+}
+
+.search-bar {
+  border: var(--darkOrange);
+  border-radius: 5px;
+  height: 25px;
+  padding-left: 6px;
+}
+
+.search-button {
+  background-color: transparent;
+  border: none;
+  scale: 1.3;
+}
+
+.search-button:hover {
+  cursor: pointer;
 }
