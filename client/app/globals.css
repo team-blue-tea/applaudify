@@ -267,6 +267,7 @@ main {
 
 .gif-list {
   display: flex;
+  flex-direction: column;
 }
 
 .gif-container {
@@ -304,7 +305,7 @@ main {
 .text-and-gif {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding-top: 10px;
+  padding-top: 15px;
   margin-top: 4px;
 }
 
@@ -316,6 +317,10 @@ main {
   color: var(--darkBlue);
   font-weight: bold;
   margin: 0;
+}
+
+.comment-with-gif {
+  max-width: 200px;
 }
 
 .with-gif {
@@ -470,7 +475,7 @@ main {
   font-size: 0.8em;
 }
 
-.ant-menu{
+.ant-menu {
   height: 85%;
   display: flex;
   flex-direction: column;
@@ -497,8 +502,19 @@ main {
 
 .title-profile-url {
   color: white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 20ch;
 }
 
 .title-profile-url:hover {
   color: var(--lightOrange);
+}
+
+.gif-confirmation-text {
+  font-size: 0.7em;
+  font-weight: 900;
+  color: var(--darkOrange);
+  width: 150px;
+  margin-left: 10px;
 }
