@@ -540,6 +540,11 @@ main {
   cursor: pointer;
 }
 
+.no-users-found {
+  color: whitesmoke;
+  font-size: 1.4em;
+}
+
 .searchResult-container {
   height: 100%;
   display: flex;
@@ -570,5 +575,5 @@ main {
 }
 
 .search-user-card__name:hover {
-  color: var(--darkOrange);
+  color: var(--card-background);
 }
