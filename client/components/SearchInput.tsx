@@ -10,7 +10,19 @@ const SearchInput = () => {
   const onSearch = (event: React.FormEvent) => {
     event.preventDefault();
     const encodedSearchQuery = encodeURI(searchQuery);
+    if (
+      encodedSearchQuery === "" ||
+      encodedSearchQuery === "%20" ||
+      !encodedSearchQuery ||
+      searchQuery === "" ||
+      searchQuery === " " ||
+      !searchQuery
+    ) {
+      alert("Search field cannot be empty");
+      return;
+    }
     router.push(`/search?q=${encodedSearchQuery}`);
+    setSearchQuery("");
   };
 
   return (

@@ -523,7 +523,11 @@ main {
   border: var(--darkOrange);
   border-radius: 5px;
   height: 25px;
-  padding-left: 6px;
+  padding-left: 10px;
+}
+
+.search-bar:focus {
+  outline: var(--darkOrange) 2px solid;
 }
 
 .search-button {
@@ -534,4 +538,37 @@ main {
 
 .search-button:hover {
   cursor: pointer;
+}
+
+.searchResult-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.search-user-card {
+  background: linear-gradient(90deg, rgba(52,125,205,1) 0%, var(--teal) 100%);
+  border-radius: 4px;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  width: 220px;
+}
+
+.search-user-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-user-card__name {
+  color: white;
+  padding: 0;
+  margin: 0;
+  transition: all 0.3s;
+}
+
+.search-user-card__name:hover {
+  color: var(--darkOrange);
 }

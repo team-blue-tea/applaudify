@@ -3,10 +3,10 @@ import Link from "next/link";
 
 function SearchUserCard(props: User) {
   return (
-    <div>
-      <Link className="title-profile-url" href={`/viewProfile/${props.id}`}>
+    <div className="search-user-card">
+      <Link className="search-user-link" href={`/viewProfile/${props.id}`}>
         <img className="logo-img title" src={props.imageURL} alt="" />
-        {props.name}
+        <h4 className="search-user-card__name">{props.name}</h4>
       </Link>
     </div>
   );

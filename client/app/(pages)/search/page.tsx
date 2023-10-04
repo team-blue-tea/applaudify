@@ -23,19 +23,18 @@ const SearchPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="searchResult-container">
+      <h1 className="main-title">Search Results:</h1>
       {users
         .filter((user: User) =>
-          new RegExp(searchQuery as string, "i").test(user.name || "")
+          new RegExp(searchQuery as string, "i").test(user.name as string)
         )
         .map((user: User) => (
-          <div>
-            <SearchUserCard
-              name={user.name}
-              imageURL={user.imageURL}
-              id={user.id}
-            />
-          </div>
+          <SearchUserCard
+            name={user.name}
+            imageURL={user.imageURL}
+            id={user.id}
+          />
         ))}
     </div>
   );
