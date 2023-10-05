@@ -22,20 +22,28 @@ const SearchPage = () => {
     getMatchingUsers();
   }, []);
 
+  const filterUsers = () => {
+    const filteredArray = users
+      .filter((user: User) =>
+        new RegExp(searchQuery as string, "i").test(user.name as string)
+      )
+      .map((user: User) => (
+        <SearchUserCard
+          name={user.name}
+          imageURL={user.imageURL}
+          id={user.id}
+        />
+      ));
+    if (filteredArray.length > 0) {
+      return filteredArray;
+    }
+    return <h3 className="no-users-found">No users found 😞</h3>;
+  };
+
   return (
     <div className="searchResult-container">
       <h1 className="main-title">Search Results:</h1>
-      {users
-        .filter((user: User) =>
-          new RegExp(searchQuery as string, "i").test(user.name as string)
-        )
-        .map((user: User) => (
-          <SearchUserCard
-            name={user.name}
-            imageURL={user.imageURL}
-            id={user.id}
-          />
-        ))}
+      {filterUsers()}
     </div>
   );
 };
