@@ -5,6 +5,7 @@ import com.example.applaudify.repository.AppreciationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,5 +24,12 @@ public class AppreciationService {
 
     public List<Appreciation> getAppreciations() {
         return appreciationRepository.findAll();
+    }
+
+    public List<Appreciation> findAppreciationsById(String userId) {
+        var appreciations = new ArrayList<Appreciation>();
+        appreciations.addAll(appreciationRepository.findAllBySenderId(userId));
+        appreciations.addAll(appreciationRepository.findAllByReceiverId(userId));
+        return appreciations;
     }
 }

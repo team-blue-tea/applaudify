@@ -1,6 +1,7 @@
 package com.example.applaudify.controller;
 
 import com.example.applaudify.model.Appreciation;
+import com.example.applaudify.model.User;
 import com.example.applaudify.service.AppreciationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,12 @@ public class AppreciationController {
     public ResponseEntity<List<Appreciation>> getAppreciations() {
         List<Appreciation> appreciationList = appreciationService.getAppreciations();
         return ResponseEntity.ok(appreciationList);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<Appreciation>> getAppreciationsByUserId(@PathVariable String userId) {
+        var appreciations = appreciationService.findAppreciationsById(userId);
+        return ResponseEntity.ok(appreciations);
     }
 
     @PostMapping("/add")
