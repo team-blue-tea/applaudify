@@ -1,4 +1,5 @@
 export type Appreciation = {
+  id?: string,
   senderName: string,
   senderId: string,
   receiverName: string,
@@ -9,6 +10,8 @@ export type Appreciation = {
   imageId: number,
   tenorUrl: string,
   createdAt?: string,
+  hiddenCards?: string[],
+  hasToggle?: boolean,
 }
 
 export type User = {

@@ -1,5 +1,5 @@
-import React from "react";
-import { Card } from "antd";
+import React, { useState } from "react";
+import { Card, Switch } from "antd";
 import { Appreciation } from "../app/types";
 import Link from "next/link";
 
@@ -25,10 +25,26 @@ export const AppreciationCard = (props: Appreciation) => {
     second: undefined,
   })}`;
 
+  const [toggleHidden, setToggleHidden] = useState(false);
+
+  const handleToggleButton = () => {
+    if (toggleHidden === false) {
+      setToggleHidden(true)
+      props.hiddenCards!.push(props.id as string)
+      props.hiddenCards?.forEach(card => console.log(card));
+      console.log("toggleOFF");
+      return;
+    }
+    setToggleHidden(false);
+    const index: number = props.hiddenCards?.findIndex(id => id === props.id) as number;
+    props.hiddenCards!.splice(index, 1);
+    console.log("toggleON");
+    return;
+  }
+
   const generateCardTitle = () => {
     return (
       <div className="title-container">
-        {/* <p className="from-to">From: </p> */}
         <Link
           className="title-profile-url"
           href={`/viewProfile/${props.senderId}`}
@@ -36,7 +52,6 @@ export const AppreciationCard = (props: Appreciation) => {
           <img className="logo-img title" src={props.senderImageURL} alt="" />
           {props.senderName.substring(0, props.senderName.indexOf(' '))}
         </Link>
-        {/* <span className="arrow">➞</span> */}
         <p className="from-to">appreciates:</p>
         <Link
           className="title-profile-url"
@@ -45,6 +60,15 @@ export const AppreciationCard = (props: Appreciation) => {
           <img className="logo-img title" src={props.receiverImageURL} alt="" />
           {props.receiverName.substring(0, props.receiverName.indexOf(' '))}
         </Link>
+        {props.hasToggle && props.hasToggle === true ?
+          <Switch
+            className="toggle-button"
+            defaultChecked
+            checkedChildren="Show"
+            unCheckedChildren="Hidden"
+            onChange={() => handleToggleButton()}
+            style={{ justifySelf: 'flex-end' }}
+          /> : null}
       </div>
     );
   };
