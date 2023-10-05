@@ -28,20 +28,22 @@ export const AppreciationCard = (props: Appreciation) => {
   const generateCardTitle = () => {
     return (
       <div className="title-container">
-        <img className="logo-img title" src={props.senderImageURL} alt="" />
+        {/* <p className="from-to">From: </p> */}
         <Link
           className="title-profile-url"
           href={`/viewProfile/${props.senderId}`}
         >
-          {props.senderName}
+          <img className="logo-img title" src={props.senderImageURL} alt="" />
+          {props.senderName.substring(0, props.senderName.indexOf(' '))}
         </Link>
-        <span className="arrow">➞</span>
-        <img className="logo-img title" src={props.receiverImageURL} alt="" />
+        {/* <span className="arrow">➞</span> */}
+        <p className="from-to">appreciates:</p>
         <Link
           className="title-profile-url"
           href={`/viewProfile/${props.receiverId}`}
         >
-          {props.receiverName}
+          <img className="logo-img title" src={props.receiverImageURL} alt="" />
+          {props.receiverName.substring(0, props.receiverName.indexOf(' '))}
         </Link>
       </div>
     );

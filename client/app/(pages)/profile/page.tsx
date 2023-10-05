@@ -64,6 +64,7 @@ function page() {
             </div>
             <ul className="feed-appreciation-list">
               {data
+                .toReversed()
                 .filter((element: Appreciation) =>
                   showingSent
                     ? element.senderName === session?.user?.name

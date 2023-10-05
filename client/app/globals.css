@@ -85,9 +85,10 @@ main {
 }
 
 .logo-img {
-  height: 50px;
+  height: 48px;
   border-radius: 50%;
   border: 2px solid var(--darkOrange);
+  margin-right: 3px;
 }
 
 .appreciate-container {
@@ -419,8 +420,7 @@ main {
 
 .title-container {
   display: flex;
-  align-items: center;
-  gap: 4px;
+  gap: 7px;
   font-size: 0.8em;
 }
 
@@ -428,6 +428,21 @@ main {
   height: 30px;
   width: 30px;
   border-radius: 50%;
+}
+
+.title-section {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.from-to {
+  color: var(--yellow);
+  font-weight: 100;
+}
+
+.sender {
+  width: 45%;
 }
 
 .arrow {
@@ -505,6 +520,9 @@ main {
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 20ch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .title-profile-url:hover {
@@ -549,7 +567,7 @@ main {
 }
 
 .search-user-card {
-  background: linear-gradient(90deg, rgba(52,125,205,1) 0%, var(--teal) 100%);
+  background: linear-gradient(90deg, rgba(52, 125, 205, 1) 0%, var(--teal) 100%);
   border-radius: 4px;
   padding: 6px 12px;
   margin-bottom: 20px;
