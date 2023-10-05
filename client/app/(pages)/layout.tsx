@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import backendUrl from "../backendURL";
+import { User } from "../types";
 
 const { Header, Sider, Content } = Layout;
 
@@ -31,6 +33,9 @@ export default function PagesLayout({
   const { data: session, status } = useSession();
   const pathname = usePathname();
   const [currentTabLeft, setCurrentTabLeft] = useState<string>(pathname);
+  const [currentUser, setCurrentUser] = useState<User>();
+
+  const [profileLink, setProfileLink] = useState<React.ReactNode>();
 
   useEffect(() => {
     const url = pathname;
@@ -45,9 +50,25 @@ export default function PagesLayout({
     }
   }, [pathname]);
 
+  useEffect(() => {
+    if (status === "authenticated") {
+      const email = session?.user?.email!;
+      console.log("email: ", email);
+      const user: User = getCurrentUser(email) as User;
+    }
+  }, [status]);
+
+  const getCurrentUser = async (email: string) => {
+    const response = await fetch(backendUrl + "/users/email/" + email);
+    const jsonData = await response.json();
+    console.log(jsonData);
+    setCurrentUser(jsonData);
+    return jsonData;
+  };
+
   return (
     <>
-      {status === "loading" ? (
+      {status === "loading" || currentUser?.id === undefined ? (
         <div className="loading-indicator">
           <img src="loading.png" alt="loading..." />
         </div>
@@ -109,11 +130,9 @@ export default function PagesLayout({
                 }, */
                     {
                       key: "/profile",
-                      icon: (
-                        <Link href="/profile">
-                          <UserOutlined />
-                        </Link>
-                      ),
+                      icon: (<Link href={"/profile/" + currentUser?.id as string}>
+                        <UserOutlined />
+                      </Link>),
                       label: "Profile",
                     },
                     {

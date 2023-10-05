@@ -29,6 +29,13 @@ function page() {
     showing ? setShowingSent(false) : setShowingSent(true);
   };
 
+  const getUser = async (urlString: string) => {
+    const urlObject = new URL(urlString);
+    const pathname = urlObject.pathname;
+    const parts = pathname.split("/");
+    const userId = parts[parts.length - 1];
+  };
+
   useEffect(() => {
     if (status === "authenticated") {
       getAppreciation();
