@@ -3,6 +3,8 @@ package com.example.applaudify.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "users")
 public class User {
     @Id
@@ -10,12 +12,17 @@ public class User {
     private String email;
     private String name;
     private String imageURL;
+    private List<String> hiddenCards;
 
     public User() {
     }
 
-    public User(String email) {
+    public User(String id, String email, String name, String imageURL, List<String> hiddenCards) {
+        this.id = id;
         this.email = email;
+        this.name = name;
+        this.imageURL = imageURL;
+        this.hiddenCards = hiddenCards;
     }
 
     public User(String id, String email, String name, String imageURL) {
@@ -28,6 +35,10 @@ public class User {
     public User(String email, String name) {
         this.email = email;
         this.name = name;
+    }
+
+    public User(String email) {
+        this.email = email;
     }
 
     public String getImageURL() {
@@ -58,4 +69,11 @@ public class User {
         this.name = name;
     }
 
+    public List<String> getHiddenCards() {
+        return hiddenCards;
+    }
+
+    public void setHiddenCards(List<String> hiddenCards) {
+        this.hiddenCards = hiddenCards;
+    }
 }

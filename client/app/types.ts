@@ -16,6 +16,7 @@ export type User = {
   email?: string,
   name?: string,
   imageURL?: string,
+  hiddenCards?: string[],
 }
 
 export type ImageUrl = {
