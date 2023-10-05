@@ -5,7 +5,7 @@ import { AppreciationCard } from "@/components/AppreciationCard";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Switch } from "antd";
+import { Button, Switch } from "antd";
 import backendUrl from "@/app/backendURL";
 
 function page() {
@@ -18,6 +18,8 @@ function page() {
 
   const [showingSent, setShowingSent] = useState(false);
   const [data, setData] = useState([]);
+  const [showingCard, setShowingCard] = useState(false);
+  const [hiddenCards, setHiddenCards] = useState<string[]>([])
 
   const getAppreciation = async () => {
     const response = await fetch(backendUrl + "/appreciations");
@@ -35,6 +37,10 @@ function page() {
     const parts = pathname.split("/");
     const userId = parts[parts.length - 1];
   };
+
+  const handleEdit = () => {
+    setShowingCard(true);
+  }
 
   useEffect(() => {
     if (status === "authenticated") {
@@ -69,6 +75,7 @@ function page() {
                 onChange={() => toggleFilter(showingSent)}
               />
             </div>
+            <Button type="primary" className="button-edit" onClick={handleEdit} style={{ alignSelf: "flex-start", margin: "0 50px" }}>Edit</Button>
             <ul className="feed-appreciation-list">
               {data
                 .toReversed()
@@ -80,6 +87,7 @@ function page() {
                 .map((element: Appreciation, index) => (
                   <li key={index}>
                     <AppreciationCard
+                      id={element.id}
                       senderName={element.senderName}
                       senderId={element.senderId}
                       receiverName={element.receiverName}
@@ -90,6 +98,8 @@ function page() {
                       imageId={0}
                       tenorUrl={element.tenorUrl}
                       createdAt={element.createdAt}
+                      hasToggle={showingCard}
+                      hiddenCards={hiddenCards}
                     />
                   </li>
                 ))}
