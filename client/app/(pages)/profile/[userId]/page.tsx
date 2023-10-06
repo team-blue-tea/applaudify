@@ -1,6 +1,6 @@
 "use client";
 
-import { Appreciation } from "@/app/types";
+import { Appreciation, User } from "@/app/types";
 import { AppreciationCard } from "@/components/AppreciationCard";
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
@@ -42,17 +42,17 @@ function page() {
     setUserId(userId);
   };
 
-  const showSaveButton = () => {
+  const handleEdit = () => {
+    setShowingCard(true);
     setShowingSave(true);
   }
 
-  const handleEdit = () => {
-    setShowingCard(true);
-    showSaveButton();
-  }
-
   const handleSave = async () => {
-    const response = await fetch(backendUrl + "/users/" + userId + "/hiddencards", {
+
+    setShowingSave(false);
+    setShowingCard(false);
+
+    const response = await fetch(backendUrl + "/users/" + userId + "/hidden-cards", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +61,7 @@ function page() {
         hiddenCards,
       }),
     })
-    setShowingSave(false);
+
   }
 
   const handleReset = () => {
@@ -102,9 +102,11 @@ function page() {
                 onChange={() => toggleFilter(showingSent)}
               />
             </div>
-            <Button type="primary" className="button-edit" onClick={handleEdit} style={{ alignSelf: "flex-start", marginLeft: "0 50px" }}>Edit</Button>
-            {showingSave && <Button type="primary" className="button-edit" onClick={handleSave} style={{ alignSelf: "flex-start", marginLeft: "0 50px", backgroundColor: "green" }}>Save</Button>}
-            {showingSave && <Button type="primary" className="button-edit" onClick={handleReset} style={{ alignSelf: "flex-start", marginLeft: "0 50px", backgroundColor: "red" }}>Reset</Button>}
+            <div className="edit-buttons-container">
+              <Button type="primary" className="button-edit" onClick={handleEdit} style={{ alignSelf: "flex-start", marginLeft: "0 50px" }}>Edit</Button>
+              {showingSave && <Button type="primary" className="button-edit" onClick={handleSave} style={{ alignSelf: "flex-start", marginLeft: "0 50px", backgroundColor: "green" }}>Save</Button>}
+              {showingSave && <Button type="primary" className="button-edit" onClick={handleReset} style={{ alignSelf: "flex-start", marginLeft: "0 50px", backgroundColor: "red" }}>Reset</Button>}
+            </div>
             <ul className="feed-appreciation-list">
               {data
                 .toReversed()

@@ -52,5 +52,15 @@ public class UserController {
         return ResponseEntity.ok(findUser);
     }
 
+    @PostMapping("/{userId}/hidden-cards")
+    public ResponseEntity<User> updateHiddenCards(@PathVariable String userId, @RequestBody User updatedUser) {
 
+        var user = userService.findUserById(userId);
+        if (user == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        user.setHiddenCards(updatedUser.getHiddenCards());
+        userService.updateUser(user);
+        return ResponseEntity.ok(user);
+    }
 }
