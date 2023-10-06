@@ -18,43 +18,56 @@ function page() {
   });
 
   const [showingSent, setShowingSent] = useState(false);
-  const [data, setData] = useState([]);
+  const [appreciations, setAppreciations] = useState([]);
+  const [updatedAppreciations, setUpdatedAppreciations] = useState([]);
   const [showingCard, setShowingCard] = useState(false);
   const [hiddenCards, setHiddenCards] = useState<string[]>([]);
   const [showingSave, setShowingSave] = useState(false);
   const [showingEdit, setShowingEdit] = useState(true);
   const [userId, setUserId] = useState<string>("");
+  const [user, setUser] = useState<User>();
 
-  const getAppreciation = async () => {
+  const getAppreciations = async () => {
     const response = await fetch(backendUrl + "/appreciations");
     const jsonData = await response.json();
-    setData(jsonData);
+    setAppreciations(jsonData);
   };
 
   const toggleFilter = (showing: boolean) => {
     showing ? setShowingSent(false) : setShowingSent(true);
   };
 
-  const getUser = async (urlString: string) => {
+  const getUserAndUpdate = async (urlString: string) => {
     const urlObject = new URL(urlString);
     const pathname = urlObject.pathname;
     const parts = pathname.split("/");
     const userId = parts[parts.length - 1];
     setUserId(userId);
+    const response = await fetch(backendUrl + "/users/id/" + userId);
+    const user = await response.json();
+    setUser(user);
+    const appreciationsResponse = await fetch(backendUrl + "/appreciations");
+    const appreciations = await appreciationsResponse.json();
+    setAppreciations(appreciations);
+    updateAppreciations(user, appreciations)
   };
+
+  const updateAppreciations = (user: User, appreciations: any) => {
+    const updatedAppreciations = appreciations.filter((appreciation: Appreciation) => !user.hiddenCards!.includes(appreciation.id as string));
+    setUpdatedAppreciations(updatedAppreciations);
+  }
 
   const handleEdit = () => {
     setShowingCard(true);
     setShowingSave(true);
     setShowingEdit(false);
+    setUpdatedAppreciations(appreciations);
   }
 
   const handleSave = async () => {
-
     setShowingSave(false);
     setShowingCard(false);
     setShowingEdit(true);
-
     const response = await fetch(backendUrl + "/users/" + userId + "/hidden-cards", {
       method: "POST",
       headers: {
@@ -64,19 +77,21 @@ function page() {
         hiddenCards,
       }),
     })
-
+    updateAppreciations(user as User, appreciations);
   }
 
   const handleReset = () => {
 
   }
 
+  const doSTuff = async () => {
+    await getAppreciations()
+    await getUserAndUpdate(window.location.href)
+  }
+
   useEffect(() => {
-    if (status === "authenticated") {
-      getAppreciation();
-      getUser(window.location.href);
-    }
-  }, [status]);
+    doSTuff()
+  }, []);
 
   return (
     <>
@@ -111,32 +126,39 @@ function page() {
               {showingSave && <Button type="primary" className="button-edit" onClick={handleReset} style={{ alignSelf: "flex-start", marginLeft: "15px", backgroundColor: "red" }}>Reset</Button>}
             </div>
             <ul className="feed-appreciation-list">
-              {data
+              {updatedAppreciations
                 .toReversed()
                 .filter((element: Appreciation) =>
                   showingSent
                     ? element.senderName === session?.user?.name
                     : element.receiverName === session?.user?.name
                 )
-                .map((element: Appreciation, index) => (
-                  <li key={index}>
-                    <AppreciationCard
-                      id={element.id}
-                      senderName={element.senderName}
-                      senderId={element.senderId}
-                      receiverName={element.receiverName}
-                      receiverId={element.receiverId}
-                      senderImageURL={element.senderImageURL}
-                      receiverImageURL={element.receiverImageURL}
-                      comment={element.comment}
-                      imageId={0}
-                      tenorUrl={element.tenorUrl}
-                      createdAt={element.createdAt}
-                      hasToggle={showingCard}
-                      hiddenCards={hiddenCards}
-                    />
-                  </li>
-                ))}
+                .map((element: Appreciation, index) => {
+                  let toggled = true;
+                  if (user?.hiddenCards!.includes(element.id as string)) {
+                    toggled = false;
+                  }
+                  return (
+                    <li key={index}>
+                      <AppreciationCard
+                        id={element.id}
+                        senderName={element.senderName}
+                        senderId={element.senderId}
+                        receiverName={element.receiverName}
+                        receiverId={element.receiverId}
+                        senderImageURL={element.senderImageURL}
+                        receiverImageURL={element.receiverImageURL}
+                        comment={element.comment}
+                        imageId={0}
+                        tenorUrl={element.tenorUrl}
+                        createdAt={element.createdAt}
+                        hasToggle={showingCard}
+                        hiddenCards={hiddenCards}
+                        isToggled={toggled}
+                      />
+                    </li>
+                  )
+                })}
             </ul>
           </div>
         )}

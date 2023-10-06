@@ -12,6 +12,7 @@ export type Appreciation = {
   createdAt?: string,
   hiddenCards?: string[],
   hasToggle?: boolean,
+  isToggled?: boolean,
 }
 
 export type User = {

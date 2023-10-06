@@ -32,4 +32,11 @@ public class AppreciationService {
         appreciations.addAll(appreciationRepository.findAllByReceiverId(userId));
         return appreciations;
     }
+
+    public void deleteAppreciation(String id) {
+        Appreciation appreciation = appreciationRepository.findById(id).orElse(null);
+        if (appreciation != null) {
+            appreciationRepository.delete(appreciation);
+        }
+    }
 }

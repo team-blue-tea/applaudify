@@ -420,6 +420,14 @@ main {
 
 .title-container {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 5px;
+}
+
+.title-container-links {
+  display: flex;
+  justify-content: space-between;
   gap: 7px;
   font-size: 0.8em;
 }

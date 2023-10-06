@@ -39,4 +39,10 @@ public class AppreciationController {
         Appreciation newAppreciation = appreciationService.addAppreciation(appreciation);
         return new ResponseEntity<>(newAppreciation, HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteAppreciation(@PathVariable String id) {
+        appreciationService.deleteAppreciation(id);
+        return ResponseEntity.noContent().build();
+    }
 }
