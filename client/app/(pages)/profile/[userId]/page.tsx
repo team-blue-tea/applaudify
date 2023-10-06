@@ -22,6 +22,7 @@ function page() {
   const [showingCard, setShowingCard] = useState(false);
   const [hiddenCards, setHiddenCards] = useState<string[]>([]);
   const [showingSave, setShowingSave] = useState(false);
+  const [showingEdit, setShowingEdit] = useState(true);
   const [userId, setUserId] = useState<string>("");
 
   const getAppreciation = async () => {
@@ -45,12 +46,14 @@ function page() {
   const handleEdit = () => {
     setShowingCard(true);
     setShowingSave(true);
+    setShowingEdit(false);
   }
 
   const handleSave = async () => {
 
     setShowingSave(false);
     setShowingCard(false);
+    setShowingEdit(true);
 
     const response = await fetch(backendUrl + "/users/" + userId + "/hidden-cards", {
       method: "POST",
@@ -103,9 +106,9 @@ function page() {
               />
             </div>
             <div className="edit-buttons-container">
-              <Button type="primary" className="button-edit" onClick={handleEdit} style={{ alignSelf: "flex-start", marginLeft: "0 50px" }}>Edit</Button>
-              {showingSave && <Button type="primary" className="button-edit" onClick={handleSave} style={{ alignSelf: "flex-start", marginLeft: "0 50px", backgroundColor: "green" }}>Save</Button>}
-              {showingSave && <Button type="primary" className="button-edit" onClick={handleReset} style={{ alignSelf: "flex-start", marginLeft: "0 50px", backgroundColor: "red" }}>Reset</Button>}
+              {showingEdit && <Button type="primary" className="button-edit" onClick={handleEdit} style={{ alignSelf: "flex-start" }}>Edit</Button>}
+              {showingSave && <Button type="primary" className="button-edit" onClick={handleSave} style={{ alignSelf: "flex-start", backgroundColor: "green" }}>Save</Button>}
+              {showingSave && <Button type="primary" className="button-edit" onClick={handleReset} style={{ alignSelf: "flex-start", marginLeft: "15px", backgroundColor: "red" }}>Reset</Button>}
             </div>
             <ul className="feed-appreciation-list">
               {data
