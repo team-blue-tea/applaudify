@@ -45,25 +45,27 @@ export const AppreciationCard = (props: Appreciation) => {
   const generateCardTitle = () => {
     return (
       <div className="title-container">
-        <Link
-          className="title-profile-url"
-          href={`/viewProfile/${props.senderId}`}
-        >
-          <img className="logo-img title" src={props.senderImageURL} alt="" />
-          {props.senderName.substring(0, props.senderName.indexOf(' '))}
-        </Link>
-        <p className="from-to">appreciates:</p>
-        <Link
-          className="title-profile-url"
-          href={`/viewProfile/${props.receiverId}`}
-        >
-          <img className="logo-img title" src={props.receiverImageURL} alt="" />
-          {props.receiverName.substring(0, props.receiverName.indexOf(' '))}
-        </Link>
+        <div className="title-container-links">
+          <Link
+            className="title-profile-url"
+            href={`/viewProfile/${props.senderId}`}
+          >
+            <img className="logo-img title" src={props.senderImageURL} alt="" />
+            {props.senderName.substring(0, props.senderName.indexOf(' '))}
+          </Link>
+          <p className="from-to">appreciates:</p>
+          <Link
+            className="title-profile-url"
+            href={`/viewProfile/${props.receiverId}`}
+          >
+            <img className="logo-img title" src={props.receiverImageURL} alt="" />
+            {props.receiverName.substring(0, props.receiverName.indexOf(' '))}
+          </Link>
+        </div>
         {props.hasToggle && props.hasToggle === true ?
           <Switch
             className="toggle-button"
-            defaultChecked
+            defaultChecked={props.isToggled}
             checkedChildren="Show"
             unCheckedChildren="Hidden"
             onChange={() => handleToggleButton()}

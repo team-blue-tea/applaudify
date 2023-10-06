@@ -53,7 +53,6 @@ export default function PagesLayout({
   useEffect(() => {
     if (status === "authenticated") {
       const email = session?.user?.email!;
-      console.log("email: ", email);
       const user: User = getCurrentUser(email) as User;
     }
   }, [status]);
@@ -61,7 +60,6 @@ export default function PagesLayout({
   const getCurrentUser = async (email: string) => {
     const response = await fetch(backendUrl + "/users/email/" + email);
     const jsonData = await response.json();
-    console.log(jsonData);
     setCurrentUser(jsonData);
     return jsonData;
   };
