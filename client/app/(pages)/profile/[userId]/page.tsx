@@ -49,48 +49,52 @@ function page() {
     const appreciationsResponse = await fetch(backendUrl + "/appreciations");
     const appreciations = await appreciationsResponse.json();
     setAppreciations(appreciations);
-    updateAppreciations(user, appreciations)
+    updateAppreciations(user, appreciations);
   };
 
   const updateAppreciations = (user: User, appreciations: any) => {
-    const updatedAppreciations = appreciations.filter((appreciation: Appreciation) => !user.hiddenCards!.includes(appreciation.id as string));
+    const updatedAppreciations = appreciations.filter(
+      (appreciation: Appreciation) =>
+        !user.hiddenCards!.includes(appreciation.id as string)
+    );
     setUpdatedAppreciations(updatedAppreciations);
-  }
+  };
 
   const handleEdit = () => {
     setShowingCard(true);
     setShowingSave(true);
     setShowingEdit(false);
     setUpdatedAppreciations(appreciations);
-  }
+  };
 
   const handleSave = async () => {
     setShowingSave(false);
     setShowingCard(false);
     setShowingEdit(true);
-    const response = await fetch(backendUrl + "/users/" + userId + "/hidden-cards", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        hiddenCards,
-      }),
-    })
+    const response = await fetch(
+      backendUrl + "/users/" + userId + "/hidden-cards",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          hiddenCards,
+        }),
+      }
+    );
     updateAppreciations(user as User, appreciations);
-  }
+  };
 
-  const handleReset = () => {
-
-  }
+  const handleReset = () => {};
 
   const doSTuff = async () => {
-    await getAppreciations()
-    await getUserAndUpdate(window.location.href)
-  }
+    await getAppreciations();
+    await getUserAndUpdate(window.location.href);
+  };
 
   useEffect(() => {
-    doSTuff()
+    doSTuff();
   }, []);
 
   return (
@@ -101,7 +105,7 @@ function page() {
           src={session?.user?.image as string}
           alt="Profile image"
         />
-        <p className="profile-container__name">Name: {session?.user?.name}</p>
+        <p className="profile-container__name">{session?.user?.name}</p>
       </div>
       <div className="">
         {status === "loading" ? (
@@ -121,9 +125,40 @@ function page() {
               />
             </div>
             <div className="edit-buttons-container">
-              {showingEdit && <Button type="primary" className="button-edit" onClick={handleEdit} style={{ alignSelf: "flex-start" }}>Edit</Button>}
-              {showingSave && <Button type="primary" className="button-edit" onClick={handleSave} style={{ alignSelf: "flex-start", backgroundColor: "green" }}>Save</Button>}
-              {showingSave && <Button type="primary" className="button-edit" onClick={handleReset} style={{ alignSelf: "flex-start", marginLeft: "15px", backgroundColor: "red" }}>Reset</Button>}
+              {showingEdit && (
+                <Button
+                  type="primary"
+                  className="button-edit"
+                  onClick={handleEdit}
+                  style={{ alignSelf: "flex-start" }}
+                >
+                  Edit
+                </Button>
+              )}
+              {showingSave && (
+                <Button
+                  type="primary"
+                  className="button-edit"
+                  onClick={handleSave}
+                  style={{ alignSelf: "flex-start", backgroundColor: "green" }}
+                >
+                  Save
+                </Button>
+              )}
+              {showingSave && (
+                <Button
+                  type="primary"
+                  className="button-edit"
+                  onClick={handleReset}
+                  style={{
+                    alignSelf: "flex-start",
+                    marginLeft: "15px",
+                    backgroundColor: "red",
+                  }}
+                >
+                  Reset
+                </Button>
+              )}
             </div>
             <ul className="feed-appreciation-list">
               {updatedAppreciations
@@ -157,7 +192,7 @@ function page() {
                         isToggled={toggled}
                       />
                     </li>
-                  )
+                  );
                 })}
             </ul>
           </div>

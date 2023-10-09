@@ -25,22 +25,26 @@ export const AppreciationCard = (props: Appreciation) => {
     second: undefined,
   })}`;
 
-  const [toggleHidden, setToggleHidden] = useState(false);
+  const [toggleHidden, setToggleHidden] = useState(props.isToggled);
 
   const handleToggleButton = () => {
-    if (toggleHidden === false) {
-      setToggleHidden(true)
-      props.hiddenCards!.push(props.id as string)
-      props.hiddenCards?.forEach(card => console.log(card));
-      console.log("toggleOFF");
+    if (toggleHidden === true) {
+      setToggleHidden(false);
+      props.hiddenCards!.push(props.id as string);
+      props.hiddenCards?.forEach((card) => console.log(card));
+      console.log(props.hiddenCards);
+      console.log("appreciationAdded");
       return;
     }
-    setToggleHidden(false);
-    const index: number = props.hiddenCards?.findIndex(id => id === props.id) as number;
+    setToggleHidden(true);
+    const index: number = props.hiddenCards?.findIndex(
+      (id) => id === props.id
+    ) as number;
     props.hiddenCards!.splice(index, 1);
-    console.log("toggleON");
+    console.log(props.hiddenCards);
+    console.log("appreciationRemoved");
     return;
-  }
+  };
 
   const generateCardTitle = () => {
     return (
@@ -51,26 +55,31 @@ export const AppreciationCard = (props: Appreciation) => {
             href={`/viewProfile/${props.senderId}`}
           >
             <img className="logo-img title" src={props.senderImageURL} alt="" />
-            {props.senderName.substring(0, props.senderName.indexOf(' '))}
+            {props.senderName.substring(0, props.senderName.indexOf(" "))}
           </Link>
           <p className="from-to">appreciates:</p>
           <Link
             className="title-profile-url"
             href={`/viewProfile/${props.receiverId}`}
           >
-            <img className="logo-img title" src={props.receiverImageURL} alt="" />
-            {props.receiverName.substring(0, props.receiverName.indexOf(' '))}
+            <img
+              className="logo-img title"
+              src={props.receiverImageURL}
+              alt=""
+            />
+            {props.receiverName.substring(0, props.receiverName.indexOf(" "))}
           </Link>
         </div>
-        {props.hasToggle && props.hasToggle === true ?
+        {props.hasToggle && props.hasToggle === true ? (
           <Switch
             className="toggle-button"
             defaultChecked={props.isToggled}
             checkedChildren="Show"
             unCheckedChildren="Hidden"
             onChange={() => handleToggleButton()}
-            style={{ justifySelf: 'flex-end' }}
-          /> : null}
+            style={{ justifySelf: "flex-end" }}
+          />
+        ) : null}
       </div>
     );
   };
