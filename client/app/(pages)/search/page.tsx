@@ -8,18 +8,19 @@ import { useEffect, useState } from "react";
 
 const SearchPage = () => {
   const [users, setUsers] = useState([]);
+  const [notFound, setNotFound] = useState(false);
   const search = useSearchParams();
   const searchQuery = search ? (search.get("q") as string) : null;
 
   const getMatchingUsers = async () => {
     const response = await fetch(backendUrl + "/users");
     const jsonData = await response.json();
-    console.log(jsonData);
     setUsers(jsonData);
   };
 
   useEffect(() => {
     getMatchingUsers();
+    filterUsers();
   }, []);
 
   const filterUsers = () => {
@@ -34,10 +35,20 @@ const SearchPage = () => {
           id={user.id}
         />
       ));
+
     if (filteredArray.length > 0) {
       return filteredArray;
     }
-    return <h3 className="no-users-found">No users found 😞</h3>;
+    if (filteredArray.length === 0 && users.length > 0) {
+      return <h3 className="no-users-found">No users found 😞</h3>;
+    }
+    if (users.length === filteredArray.length) {
+      return (
+        <div className="loading-indicator">
+          <img src="loading.png" alt="loading..." />
+        </div>
+      );
+    }
   };
 
   return (
