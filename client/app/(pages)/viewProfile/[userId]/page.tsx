@@ -48,7 +48,7 @@ function page() {
           src={user.imageURL as string}
           alt="Profile image"
         />
-        <p className="profile-container__name">Name: {user.name}</p>
+        <p className="profile-container__name">{user.name}</p>
       </div>
       <div className="">
         {status === "loading" ? (
