@@ -23,38 +23,15 @@ function Home() {
 
   const [data, setData] = useState([]);
 
-
   const getAppreciation = async () => {
     const response = await fetch(backendUrl + "/appreciations");
     const jsonData = await response.json();
     setData(jsonData.toReversed());
   };
 
-  const addUserToDb = async () => {
-    if (!user.email) {
-      return;
-    }
-    try {
-      const res = await fetch(backendUrl + "/users/add", {
-        method: "POST",
-        body: JSON.stringify(user),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        throw new Error(`Failed to add user. Status code: ${res.status}`);
-      }
-    } catch (error) {
-      console.error("Error adding user to DB:", error);
-    }
-  };
-
   useEffect(() => {
     if (status === "authenticated") {
       getAppreciation();
-      addUserToDb();
     }
   }, [status]);
 
