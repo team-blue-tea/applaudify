@@ -34,8 +34,13 @@ export default function PagesLayout({
   const pathname = usePathname();
   const [currentTabLeft, setCurrentTabLeft] = useState<string>(pathname);
   const [currentUser, setCurrentUser] = useState<User>();
-
   const [profileLink, setProfileLink] = useState<React.ReactNode>();
+
+  const user: User = {
+    email: session?.user?.email as string,
+    name: session?.user?.name as string,
+    imageURL: session?.user?.image as string,
+  };
 
   useEffect(() => {
     const url = pathname;
@@ -52,12 +57,34 @@ export default function PagesLayout({
 
   useEffect(() => {
     if (status === "authenticated") {
-      const email = session?.user?.email!;
-      const user: User = getCurrentUser(email) as User;
+      addUserToDb();
     }
   }, [status]);
 
+  const addUserToDb = async () => {
+    if (!user.email) {
+      return;
+    }
+    try {
+      const res = await fetch(backendUrl + "/users/add", {
+        method: "POST",
+        body: JSON.stringify(user),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(`Failed to add user. Status code: ${res.status}`);
+      }
+    } catch (error) {
+      console.error("Error adding user to DB:", error);
+    }
+    await getCurrentUser(user.email);
+  };
+
   const getCurrentUser = async (email: string) => {
+    console.log("TRYING TO GET USER");
     const response = await fetch(backendUrl + "/users/email/" + email);
     const jsonData = await response.json();
     setCurrentUser(jsonData);
@@ -128,9 +155,11 @@ export default function PagesLayout({
                 }, */
                     {
                       key: "/profile",
-                      icon: (<Link href={"/profile/" + currentUser?.id as string}>
-                        <UserOutlined />
-                      </Link>),
+                      icon: (
+                        <Link href={("/profile/" + currentUser?.id) as string}>
+                          <UserOutlined />
+                        </Link>
+                      ),
                       label: "Profile",
                     },
                     {
