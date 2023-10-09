@@ -26,7 +26,7 @@ const App = (props: ImageUrl) => {
         }}
       >
         <Link href={"/feed"} className="demo-logo">
-          <img src="logo-img.png" className="logo-img"></img>
+          <img src="https://i.imgur.com/jCUushh.png" className="logo-img"></img>
         </Link>
         <SearchInput />
         <Link href={"/profile"} className="profile-icon">

@@ -35,7 +35,7 @@ function page() {
     const pathname = urlObject.pathname;
     const parts = pathname.split("/");
     const userId = parts[parts.length - 1];
-    const response = await fetch(backendUrl + "/users/" + userId);
+    const response = await fetch(backendUrl + "/users/id/" + userId);
     const jsonData = await response.json();
     setUser(jsonData);
   };
