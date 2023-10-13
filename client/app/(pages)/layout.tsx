@@ -35,13 +35,12 @@ export default function PagesLayout({
   const [currentTabLeft, setCurrentTabLeft] = useState<string>(pathname);
   const [currentUser, setCurrentUser] = useState<User>();
   const [profileLink, setProfileLink] = useState<React.ReactNode>();
-  const emptyArray: string[] = [];
 
   const user: User = {
     email: session?.user?.email as string,
     name: session?.user?.name as string,
     imageURL: session?.user?.image as string,
-    hiddenCards: emptyArray,
+    hiddenCards: [],
   };
 
   useEffect(() => {

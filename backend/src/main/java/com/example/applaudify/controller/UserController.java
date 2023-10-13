@@ -1,6 +1,7 @@
 package com.example.applaudify.controller;
 
 import com.example.applaudify.ApplaudifyApplication;
+import com.example.applaudify.controller.dto.UserListResponse;
 import com.example.applaudify.model.User;
 import com.example.applaudify.service.UserService;
 import org.slf4j.Logger;
@@ -14,7 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("api/v1/users")
 @CrossOrigin("*")
 public class UserController {
 
@@ -26,9 +27,8 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-        List<User> userList = userService.getUsers();
-        return ResponseEntity.ok(userList);
+    public UserListResponse getUsers() {
+        return userService.getUsers();
     }
 
     @GetMapping("/id/{userId}")
@@ -54,7 +54,6 @@ public class UserController {
 
     @PostMapping("/{userId}/hidden-cards")
     public ResponseEntity<User> updateHiddenCards(@PathVariable String userId, @RequestBody User updatedUser) {
-
         var user = userService.findUserById(userId);
         if (user == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");

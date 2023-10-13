@@ -1,5 +1,6 @@
 package com.example.applaudify.service;
 
+import com.example.applaudify.controller.dto.UserListResponse;
 import com.example.applaudify.model.User;
 import com.example.applaudify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getUsers() {
-        return userRepository.findAll();
+    public UserListResponse getUsers() {
+        return UserListResponse.builder()
+                .userList(userRepository.findAll())
+                .build();
     }
 
     public User addUser(User user) {
@@ -29,8 +32,10 @@ public class UserService {
     }
 
     public User findUserById(String id) throws ResponseStatusException {
-        return Optional.of(userRepository.findById(id)).get().orElseThrow(() ->
-                new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+        //optional?
+        return Optional.of(userRepository.findById(id))
+                .get()
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
     }
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);

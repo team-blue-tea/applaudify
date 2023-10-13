@@ -25,24 +25,20 @@ export const AppreciationCard = (props: Appreciation) => {
     second: undefined,
   })}`;
 
-  const [toggleHidden, setToggleHidden] = useState(props.isToggled);
+  const [appreciationHidden, setAppreciationHidden] = useState(props.isToggled);
 
   const handleToggleButton = () => {
-    if (toggleHidden === true) {
-      setToggleHidden(false);
+    if (appreciationHidden === true) {
+      setAppreciationHidden(false);
       props.hiddenCards!.push(props.id as string);
       props.hiddenCards?.forEach((card) => console.log(card));
-      console.log(props.hiddenCards);
-      console.log("appreciationAdded");
       return;
     }
-    setToggleHidden(true);
+    setAppreciationHidden(true);
     const index: number = props.hiddenCards?.findIndex(
       (id) => id === props.id
     ) as number;
     props.hiddenCards!.splice(index, 1);
-    console.log(props.hiddenCards);
-    console.log("appreciationRemoved");
     return;
   };
 
