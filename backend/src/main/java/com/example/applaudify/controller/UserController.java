@@ -35,10 +35,7 @@ public class UserController {
     @GetMapping("/id/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable String userId) {
         var user = userService.findUserById(userId);
-        if (user.isEmpty()) {
-            throw new UserNotFoundException("No user found with ID:" + userId);
-        }
-        return ResponseEntity.ok(user.get());
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/email/{userEmail}")

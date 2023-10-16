@@ -1,6 +1,7 @@
 package com.example.applaudify.service;
 
 import com.example.applaudify.controller.dto.UserListResponse;
+import com.example.applaudify.exceptions.UserNotFoundException;
 import com.example.applaudify.model.User;
 import com.example.applaudify.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,9 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findUserById(String id) {
-        return userRepository.findById(id);
+    public User findUserById(String id) {
+       var user = userRepository.findById(id);
+    return user.orElseThrow(() -> new UserNotFoundException("User not found with ID: " + id));
     }
 
     public User findUserByEmail(String email) {
