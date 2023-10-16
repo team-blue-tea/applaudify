@@ -2,7 +2,6 @@ package com.example.applaudify.controller;
 
 import com.example.applaudify.ApplaudifyApplication;
 import com.example.applaudify.controller.dto.UserListResponse;
-import com.example.applaudify.model.User;
 import com.example.applaudify.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import com.example.applaudify.model.User;
 
 import java.util.List;
 
