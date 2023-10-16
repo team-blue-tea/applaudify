@@ -2,6 +2,7 @@ package com.example.applaudify.controller;
 
 import com.example.applaudify.ApplaudifyApplication;
 import com.example.applaudify.controller.dto.UserListResponse;
+import com.example.applaudify.exceptions.UserNotFoundException;
 import com.example.applaudify.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,8 +34,11 @@ public class UserController {
 
     @GetMapping("/id/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable String userId) {
-        User user = userService.findUserById(userId);
-        return ResponseEntity.ok(user);
+        var user = userService.findUserById(userId);
+        if (user.isEmpty()) {
+            throw new UserNotFoundException("No user found with ID:" + userId);
+        }
+        return ResponseEntity.ok(user.get());
     }
 
     @GetMapping("/email/{userEmail}")
@@ -52,14 +56,14 @@ public class UserController {
         return ResponseEntity.ok(findUser);
     }
 
-    @PostMapping("/{userId}/hidden-cards")
-    public ResponseEntity<User> updateHiddenCards(@PathVariable String userId, @RequestBody User updatedUser) {
-        var user = userService.findUserById(userId);
-        if (user == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
-        }
-        user.setHiddenCards(updatedUser.getHiddenCards());
-        userService.updateUser(user);
-        return ResponseEntity.ok(user);
-    }
+//    @PostMapping("/{userId}/hidden-cards")
+//    public ResponseEntity<User> updateHiddenCards(@PathVariable String userId, @RequestBody User updatedUser) {
+//        var user = userService.findUserById(userId);
+//        if (user == null) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+//        }
+//        user.setHiddenCards(updatedUser.getHiddenCards());
+//        userService.updateUser(user);
+//        return ResponseEntity.ok(user);
+//    }
 }

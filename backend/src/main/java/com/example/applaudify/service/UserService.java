@@ -31,12 +31,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User findUserById(String id) throws ResponseStatusException {
-        //optional?
-        return Optional.of(userRepository.findById(id))
-                .get()
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+    public Optional<User> findUserById(String id) {
+        return userRepository.findById(id);
     }
+
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
