@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/appreciations")
+@RequestMapping("api/v1/appreciations")
 @CrossOrigin("*")
 public class AppreciationController {
 
