@@ -1,3 +1,5 @@
+#### Note: We are currently rebuilding this project from scratch, current state will not match our planned future version.
+
 # Applaudify
 
 Welcome to **Applaudify** – the ultimate application for organizations and employees who are eager to celebrate and acknowledge their soft skills and contributions. 🎉
